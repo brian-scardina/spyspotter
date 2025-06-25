@@ -254,3 +254,9 @@ The tool calculates a privacy score (0-100) based on:
 ## Privacy Note
 
 This tool is designed for legitimate security research, privacy auditing, and website analysis. Always respect website terms of service and applicable laws when using this tool.
+
+## Copyright
+
+ (c)2025 by SCARDINA.cc.
+
+
