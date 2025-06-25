@@ -1,0 +1,63 @@
+apiVersion: v2
+name: pixeltracker
+description: A Helm chart for PixelTracker - Advanced tracking pixel detection tool
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+
+keywords:
+  - privacy
+  - tracking
+  - pixel
+  - security
+  - analytics
+
+home: https://github.com/brian-scardina/spyspotter
+sources:
+  - https://github.com/brian-scardina/spyspotter.git
+
+maintainers:
+  - name: SpySpotter Team
+    email: brian@scardina.dev
+
+dependencies:
+  - name: redis
+    version: "17.15.6"
+    repository: "https://charts.bitnami.com/bitnami"
+    condition: redis.enabled
+    tags:
+      - database
+  - name: postgresql
+    version: "13.2.24"
+    repository: "https://charts.bitnami.com/bitnami"
+    condition: postgresql.enabled
+    tags:
+      - database
+  - name: mongodb
+    version: "13.18.5"
+    repository: "https://charts.bitnami.com/bitnami"
+    condition: mongodb.enabled
+    tags:
+      - database
+  - name: elasticsearch
+    version: "8.5.1"
+    repository: "https://helm.elastic.co"
+    condition: elasticsearch.enabled
+    tags:
+      - search
+  - name: prometheus
+    version: "25.8.0"
+    repository: "https://prometheus-community.github.io/helm-charts"
+    condition: monitoring.prometheus.enabled
+    tags:
+      - monitoring
+  - name: grafana
+    version: "7.0.19"
+    repository: "https://grafana.github.io/helm-charts"
+    condition: monitoring.grafana.enabled
+    tags:
+      - monitoring
+
+annotations:
+  category: Analytics
+  licenses: MIT

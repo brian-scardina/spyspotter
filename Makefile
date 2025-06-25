@@ -1,7 +1,7 @@
 # PixelTracker Makefile
 # Comprehensive testing, benchmarking, and development commands
 
-.PHONY: help test test-unit test-integration test-performance test-all benchmark coverage coverage-html coverage-badge clean install setup lint format docs
+.PHONY: help test test-unit test-integration test-performance test-all benchmark coverage coverage-html coverage-badge clean install setup lint format docs security-scan compliance-check sbom security-audit
 
 # Default target
 help:
@@ -35,6 +35,12 @@ help:
 	@echo ""
 	@echo "Documentation:"
 	@echo "  docs              - Generate documentation"
+	@echo ""
+	@echo "Security:"
+	@echo "  security-scan     - Run security scan on URLs"
+	@echo "  compliance-check  - Check GDPR/CCPA compliance"
+	@echo "  security-audit    - Comprehensive security audit"
+	@echo "  sbom              - Generate Software Bill of Materials"
 
 # Installation and Setup
 install:

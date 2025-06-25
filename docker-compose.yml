@@ -1,69 +1,186 @@
 version: '3.8'
 
 services:
-  # Core development environment
+  # ==========================================
+  # CORE SERVICES - Multi-stage builds
+  # ==========================================
+  
+  # Core stage - Basic functionality
+  pixeltracker-core:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: core
+      args:
+        PYTHON_VERSION: 3.11
+        ALPINE_VERSION: 3.18
+        BUILD_DATE: ${BUILD_DATE:-$(date -u +'%Y-%m-%dT%H:%M:%SZ')}
+        VCS_REF: ${VCS_REF:-$(git rev-parse --short HEAD)}
+        VERSION: ${VERSION:-latest}
+    image: pixeltracker:core
+    container_name: pixeltracker-core
+    profiles: ["core", "all"]
+    environment:
+      - PIXELTRACKER_ENV=production
+      - PIXELTRACKER_STAGE=core
+      - PIXELTRACKER_LOG_LEVEL=INFO
+      # Environment variable configuration overrides
+      - PIXELTRACKER__SCANNING__RATE_LIMIT_DELAY=1.0
+      - PIXELTRACKER__SCANNING__CONCURRENT_REQUESTS=10
+    volumes:
+      - pixeltracker-core-data:/app/data
+      - pixeltracker-core-logs:/app/logs
+      - pixeltracker-core-config:/app/config.d
+    networks:
+      - pixeltracker-net
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.path.insert(0, '/app'); import pixeltracker; print('OK')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+  # ML stage - Machine Learning capabilities
+  pixeltracker-ml:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: ml
+      args:
+        PYTHON_VERSION: 3.11
+        ALPINE_VERSION: 3.18
+        BUILD_DATE: ${BUILD_DATE:-$(date -u +'%Y-%m-%dT%H:%M:%SZ')}
+        VCS_REF: ${VCS_REF:-$(git rev-parse --short HEAD)}
+        VERSION: ${VERSION:-latest}
+    image: pixeltracker:ml
+    container_name: pixeltracker-ml
+    profiles: ["ml", "all"]
+    environment:
+      - PIXELTRACKER_ENV=production
+      - PIXELTRACKER_STAGE=ml
+      - PIXELTRACKER_LOG_LEVEL=INFO
+      - PIXELTRACKER_ML_ENABLED=true
+      # ML-specific configuration
+      - PIXELTRACKER__DETECTION__ENABLE_ML_CLUSTERING=true
+      - PIXELTRACKER__DETECTION__ENABLE_BEHAVIORAL_ANALYSIS=true
+      - PIXELTRACKER__DETECTION__SENSITIVITY=high
+    volumes:
+      - pixeltracker-ml-data:/app/data
+      - pixeltracker-ml-logs:/app/logs
+      - pixeltracker-ml-config:/app/config.d
+    networks:
+      - pixeltracker-net
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.path.insert(0, '/app'); import pixeltracker; import numpy; print('OK')"]
+      interval: 30s
+      timeout: 15s
+      retries: 3
+      start_period: 10s
+
+  # Enterprise stage - Full enterprise features
+  pixeltracker-enterprise:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: enterprise
+      args:
+        PYTHON_VERSION: 3.11
+        ALPINE_VERSION: 3.18
+        BUILD_DATE: ${BUILD_DATE:-$(date -u +'%Y-%m-%dT%H:%M:%SZ')}
+        VCS_REF: ${VCS_REF:-$(git rev-parse --short HEAD)}
+        VERSION: ${VERSION:-latest}
+    image: pixeltracker:enterprise
+    container_name: pixeltracker-enterprise
+    profiles: ["enterprise", "all"]
+    environment:
+      - PIXELTRACKER_ENV=enterprise
+      - PIXELTRACKER_STAGE=enterprise
+      - PIXELTRACKER_LOG_LEVEL=INFO
+      - PIXELTRACKER_ENTERPRISE_ENABLED=true
+      - PIXELTRACKER_ML_ENABLED=true
+      - PIXELTRACKER_REDIS_ENABLED=true
+      - PIXELTRACKER_MONITORING_ENABLED=true
+      # Redis configuration
+      - PIXELTRACKER_REDIS_HOST=redis
+      - PIXELTRACKER_REDIS_PORT=6379
+      # Enterprise-specific configuration
+      - PIXELTRACKER__DETECTION__ENABLE_ML_CLUSTERING=true
+      - PIXELTRACKER__DETECTION__ENABLE_BEHAVIORAL_ANALYSIS=true
+      - PIXELTRACKER__SCANNING__CONCURRENT_REQUESTS=50
+      - PIXELTRACKER__SCANNING__RATE_LIMIT_DELAY=0.5
+    volumes:
+      - pixeltracker-enterprise-data:/app/data
+      - pixeltracker-enterprise-logs:/app/logs
+      - pixeltracker-enterprise-config:/app/config.d
+      - pixeltracker-enterprise-backups:/app/backups
+    ports:
+      - "8080:8080"  # Main application
+      - "8081:8081"  # Admin interface
+      - "9090:9090"  # Metrics endpoint
+    networks:
+      - pixeltracker-net
+    restart: unless-stopped
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.path.insert(0, '/app'); import pixeltracker; import numpy; import redis; print('OK')"]
+      interval: 30s
+      timeout: 15s
+      retries: 3
+      start_period: 15s
+
+  # Development environment
   pixeltracker-dev:
     build:
       context: .
       dockerfile: Dockerfile
       target: development
       args:
-        PYTHON_VERSION: 3.9
+        PYTHON_VERSION: 3.11
         ALPINE_VERSION: 3.18
+        BUILD_DATE: ${BUILD_DATE:-$(date -u +'%Y-%m-%dT%H:%M:%SZ')}
+        VCS_REF: ${VCS_REF:-$(git rev-parse --short HEAD)}
+        VERSION: ${VERSION:-dev}
     image: pixeltracker:dev
     container_name: pixeltracker-dev
-    volumes:
-      - .:/app
-      - pixeltracker-cache:/app/.cache
+    profiles: ["dev", "development"]
     environment:
-      - PYTHONPATH=/app
       - PIXELTRACKER_ENV=development
+      - PIXELTRACKER_STAGE=development
       - PIXELTRACKER_LOG_LEVEL=DEBUG
+      - PIXELTRACKER_DEBUG=true
+      - PIXELTRACKER_ENTERPRISE_ENABLED=true
+      - PIXELTRACKER_ML_ENABLED=true
+      - PIXELTRACKER_REDIS_ENABLED=true
+      - PIXELTRACKER_REDIS_HOST=redis
+    volumes:
+      - .:/app  # Mount source code for development
+      - pixeltracker-dev-data:/app/data
+      - pixeltracker-dev-logs:/app/logs
+      - pixeltracker-dev-config:/app/config.d
+      - pixeltracker-cache:/app/.cache
     working_dir: /app
-    command: /bin/bash
+    command: bash
     stdin_open: true
     tty: true
     networks:
       - pixeltracker-net
+    depends_on:
+      redis:
+        condition: service_healthy
 
-  # Production-like environment
-  pixeltracker-prod:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: production
-    image: pixeltracker:prod
-    container_name: pixeltracker-prod
-    environment:
-      - PYTHONPATH=/app
-      - PIXELTRACKER_ENV=production
-      - PIXELTRACKER_LOG_LEVEL=INFO
-    networks:
-      - pixeltracker-net
-    restart: unless-stopped
-
-  # Enterprise environment with ML capabilities
-  pixeltracker-enterprise:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: enterprise
-    image: pixeltracker:enterprise
-    container_name: pixeltracker-enterprise
-    environment:
-      - PYTHONPATH=/app
-      - PIXELTRACKER_ENV=enterprise
-      - PIXELTRACKER_LOG_LEVEL=INFO
-    volumes:
-      - pixeltracker-data:/app/data
-    networks:
-      - pixeltracker-net
-    restart: unless-stopped
-
+  # ==========================================
+  # OPTIONAL SERVICES - Infrastructure
+  # ==========================================
+  
   # Redis for caching and task queue
   redis:
     image: redis:7-alpine
     container_name: pixeltracker-redis
+    profiles: ["redis", "enterprise", "dev", "all"]
     ports:
       - "6379:6379"
     volumes:
@@ -72,11 +189,40 @@ services:
       - pixeltracker-net
     restart: unless-stopped
     command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
-  # MongoDB for data storage
+  # PostgreSQL for relational data
+  postgres:
+    image: postgres:15-alpine
+    container_name: pixeltracker-postgres
+    profiles: ["postgres", "database", "enterprise", "all"]
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=pixeltracker
+      - POSTGRES_USER=pixeltracker
+      - POSTGRES_PASSWORD=pixeltracker_password
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./scripts/init-postgres.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    networks:
+      - pixeltracker-net
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pixeltracker"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # MongoDB for document storage
   mongodb:
     image: mongo:7
     container_name: pixeltracker-mongodb
+    profiles: ["mongodb", "database", "enterprise", "all"]
     ports:
       - "27017:27017"
     environment:
@@ -89,11 +235,17 @@ services:
     networks:
       - pixeltracker-net
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
   # Elasticsearch for search and analytics
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
     container_name: pixeltracker-elasticsearch
+    profiles: ["elasticsearch", "search", "enterprise", "all"]
     environment:
       - discovery.type=single-node
       - xpack.security.enabled=false
@@ -105,13 +257,23 @@ services:
     networks:
       - pixeltracker-net
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
+  # ==========================================
+  # MONITORING SERVICES
+  # ==========================================
+  
   # Prometheus for metrics
   prometheus:
     image: prom/prometheus:latest
     container_name: pixeltracker-prometheus
+    profiles: ["monitoring", "enterprise", "all"]
     ports:
-      - "9090:9090"
+      - "9091:9090"  # Changed to avoid conflict with app metrics
     volumes:
       - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - prometheus-data:/prometheus
@@ -124,22 +286,41 @@ services:
       - '--web.console.libraries=/etc/prometheus/console_libraries'
       - '--web.console.templates=/etc/prometheus/consoles'
       - '--web.enable-lifecycle'
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:9090/-/healthy || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   # Grafana for visualization
   grafana:
     image: grafana/grafana:latest
     container_name: pixeltracker-grafana
+    profiles: ["monitoring", "dashboard", "enterprise", "all"]
     ports:
       - "3000:3000"
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_SECURITY_ADMIN_USER=admin
     volumes:
       - grafana-data:/var/lib/grafana
       - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
     networks:
       - pixeltracker-net
     restart: unless-stopped
+    depends_on:
+      prometheus:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3000/api/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
+  # ==========================================
+  # UTILITY SERVICES
+  # ==========================================
+  
   # Test runner service
   test-runner:
     build:
@@ -148,12 +329,15 @@ services:
       target: development
     image: pixeltracker:test
     container_name: pixeltracker-test
+    profiles: ["test", "dev"]
     volumes:
       - .:/app
       - test-cache:/app/.pytest_cache
+      - test-coverage:/app/htmlcov
     environment:
       - PYTHONPATH=/app
       - PIXELTRACKER_ENV=test
+      - PIXELTRACKER_LOG_LEVEL=DEBUG
     working_dir: /app
     command: pytest tests/ -v --cov=pixeltracker --cov-report=html --cov-report=term-missing
     networks:
@@ -162,16 +346,52 @@ services:
       - redis
       - mongodb
 
+# ==========================================
+# VOLUME DEFINITIONS
+# ==========================================
 volumes:
+  # Core service volumes
+  pixeltracker-core-data:
+  pixeltracker-core-logs:
+  pixeltracker-core-config:
+  
+  # ML service volumes
+  pixeltracker-ml-data:
+  pixeltracker-ml-logs:
+  pixeltracker-ml-config:
+  
+  # Enterprise service volumes
+  pixeltracker-enterprise-data:
+  pixeltracker-enterprise-logs:
+  pixeltracker-enterprise-config:
+  pixeltracker-enterprise-backups:
+  
+  # Development volumes
+  pixeltracker-dev-data:
+  pixeltracker-dev-logs:
+  pixeltracker-dev-config:
   pixeltracker-cache:
-  pixeltracker-data:
-  test-cache:
-  redis-data:
+  
+  # Database volumes
+  postgres-data:
   mongodb-data:
+  redis-data:
   elasticsearch-data:
+  
+  # Monitoring volumes
   prometheus-data:
   grafana-data:
+  
+  # Test volumes
+  test-cache:
+  test-coverage:
 
+# ==========================================
+# NETWORK DEFINITIONS
+# ==========================================
 networks:
   pixeltracker-net:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

@@ -62,3 +62,22 @@ class EnhancedTrackingScanner(BasicTrackingScanner):
         # TODO: Implement behavioral pattern analysis
         logger.debug("Behavioral analysis applied (placeholder)")
         return result
+    
+    def scan_url_sync(self, url: str) -> ScanResult:
+        """
+        Synchronous wrapper for enhanced scan_url
+        
+        Args:
+            url: URL to scan
+            
+        Returns:
+            ScanResult containing analysis results
+        """
+        import asyncio
+        
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        try:
+            return loop.run_until_complete(self.scan_url(url))
+        finally:
+            loop.close()

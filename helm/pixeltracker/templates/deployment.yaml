@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "pixeltracker.fullname" . }}
+  labels:
+    {{- include "pixeltracker.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  strategy:
+    type: {{ .Values.updateStrategy.type }}
+    rollingUpdate:
+      maxUnavailable: {{ .Values.updateStrategy.rollingUpdate.maxUnavailable }}
+      maxSurge: {{ .Values.updateStrategy.rollingUpdate.maxSurge }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "pixeltracker.name" . }}
+  template:
+    metadata:
+      labels:
+        {{- include "pixeltracker.labels" . | nindent 8 }}
+      annotations:
+        checksum/configmap: {{ include (print "\"checksum/configmap-" .Release.Name) . }}
+    spec:
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      serviceAccountName: {{ include "pixeltracker.serviceAccountName" . }}
+      containers:
+        - name: pixeltracker
+          image: "{{ include "pixeltracker.image" . }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8080
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          env:
+            - name: PIXELTRACKER_ENV
+              value: "{{ .Values.environment }}"
+            - name: PIXELTRACKER_CONFIG_DIR
+              value: /app/config.d
+          volumeMounts:
+            - name: config-volume
+              mountPath: /app/config.d
+            - name: data-volume
+              mountPath: /app/data
+            - name: logs-volume
+              mountPath: /app/logs
+            - name: cache-volume
+              mountPath: /app/cache
+        {{- if .Values.secrets.create }}
+          - name: secrets-volume
+            mountPath: /app/secrets
+        {{- end }}
+      volumes:
+        - name: config-volume
+          configMap:
+            name: {{ include "pixeltracker.configmapName" . }}
+        - name: data-volume
+          persistentVolumeClaim:
+            claimName: {{ include "pixeltracker.pvcDataName" . }}
+        - name: logs-volume
+          persistentVolumeClaim:
+            claimName: {{ include "pixeltracker.pvcLogsName" . }}
+        - name: cache-volume
+          persistentVolumeClaim:
+            claimName: {{ include "pixeltracker.pvcCacheName" . }}
+        {{- if .Values.secrets.create }}
+        - name: secrets-volume
+          secret:
+            secretName: {{ include "pixeltracker.secretsName" . }}
+        {{- end }}

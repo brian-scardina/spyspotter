@@ -166,6 +166,23 @@ class BasicTrackingScanner:
         logger.info(f"Completed scan of {len(urls)} URLs")
         return valid_results
     
+    def scan_url_sync(self, url: str) -> ScanResult:
+        """
+        Synchronous wrapper for scan_url
+        
+        Args:
+            url: URL to scan
+            
+        Returns:
+            ScanResult containing analysis results
+        """
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        try:
+            return loop.run_until_complete(self.scan_url(url))
+        finally:
+            loop.close()
+    
     def _convert_to_tracker_info(self, parsed_data: dict, url: str) -> List[TrackerInfo]:
         """Convert parsed data to TrackerInfo objects"""
         trackers = []

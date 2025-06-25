@@ -1,0 +1,47 @@
+{
+  "email": {
+    "smtp_server": "smtp.gmail.com",
+    "smtp_port": 587,
+    "username": "your-email@gmail.com",
+    "password": "your-app-password",
+    "from_email": "pixeltracker@yourcompany.com",
+    "default_recipients": [
+      "privacy-team@yourcompany.com",
+      "security@yourcompany.com"
+    ]
+  },
+  "slack": {
+    "token": "xoxb-your-slack-bot-token",
+    "default_channels": [
+      "#privacy-alerts",
+      "#security-monitoring"
+    ]
+  },
+  "celery": {
+    "broker_url": "redis://localhost:6379/0",
+    "result_backend": "redis://localhost:6379/0"
+  },
+  "prometheus": {
+    "gateway_url": "http://localhost:9091",
+    "job_name": "pixeltracker"
+  },
+  "database": {
+    "url": "sqlite:///pixeltracker.db",
+    "echo": false
+  },
+  "reports_dir": "reports",
+  "aggregation_dir": "aggregations",
+  "report_retention_days": 30,
+  "alert_thresholds": {
+    "privacy_degradation_threshold": 10,
+    "tracker_increase_threshold": 20,
+    "min_privacy_score": 60,
+    "max_trackers": 50
+  },
+  "company_branding": {
+    "company_name": "Your Company Privacy Analysis",
+    "logo_path": "assets/logo.png",
+    "color_scheme": "blue",
+    "contact_email": "privacy@yourcompany.com"
+  }
+}

@@ -1,0 +1,496 @@
+# Default values for PixelTracker Helm Chart
+# This is a YAML-formatted file.
+
+# Global settings
+global:
+  # Image registry for all images
+  imageRegistry: ""
+  # Image pull secrets
+  imagePullSecrets: []
+  # Storage class for persistent volumes
+  storageClass: ""
+
+# ==========================================
+# APPLICATION CONFIGURATION
+# ==========================================
+
+# Application image configuration
+image:
+  registry: docker.io
+  repository: brianscardina/spyspotter
+  tag: "latest"
+  pullPolicy: IfNotPresent
+  # Possible values: core, ml, enterprise, development
+  variant: "enterprise"
+
+# Environment configuration
+environment: "production"
+
+# Replica count for the main application
+replicaCount: 3
+
+# Update strategy
+updateStrategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxUnavailable: 1
+    maxSurge: 1
+
+# Resource limits and requests
+resources:
+  requests:
+    memory: "512Mi"
+    cpu: "250m"
+  limits:
+    memory: "2Gi"
+    cpu: "1000m"
+
+# Node selector for pod assignment
+nodeSelector: {}
+
+# Tolerations for pod assignment
+tolerations: []
+
+# Affinity for pod assignment
+affinity: {}
+
+# Pod security context
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  runAsGroup: 1000
+  fsGroup: 1000
+
+# Security context for containers
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 1000
+  capabilities:
+    drop:
+      - ALL
+
+# ==========================================
+# SERVICE CONFIGURATION
+# ==========================================
+
+service:
+  type: ClusterIP
+  port: 8080
+  targetPort: 8080
+  annotations: {}
+
+# Ingress configuration
+ingress:
+  enabled: false
+  className: "nginx"
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+  hosts:
+    - host: pixeltracker.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: pixeltracker-tls
+      hosts:
+        - pixeltracker.local
+
+# ==========================================
+# STORAGE CONFIGURATION
+# ==========================================
+
+persistence:
+  # Enable persistent storage
+  enabled: true
+  # Storage class name
+  storageClass: ""
+  # Access mode
+  accessMode: ReadWriteOnce
+  # Storage size
+  size: 10Gi
+  # Annotations for PVC
+  annotations: {}
+
+# Configuration for different data directories
+volumes:
+  data:
+    enabled: true
+    size: 10Gi
+    mountPath: /app/data
+    storageClass: ""
+  logs:
+    enabled: true
+    size: 5Gi
+    mountPath: /app/logs
+    storageClass: ""
+  config:
+    enabled: true
+    size: 1Gi
+    mountPath: /app/config.d
+    storageClass: ""
+  cache:
+    enabled: true
+    size: 5Gi
+    mountPath: /app/cache
+    storageClass: ""
+
+# ==========================================
+# CONFIGURATION MANAGEMENT
+# ==========================================
+
+# ConfigMap for application configuration
+configMap:
+  # Create a ConfigMap with application configuration
+  create: true
+  # Configuration data (will be merged with environment-specific configs)
+  data:
+    scanning:
+      rate_limit_delay: 1.0
+      request_timeout: 10
+      concurrent_requests: 10
+      follow_redirects: true
+      verify_ssl: true
+    logging:
+      level: "INFO"
+      json_format: true
+    privacy:
+      scoring_weights:
+        tracking_pixel: 5
+        external_script: 8
+        inline_script: 3
+        high_risk_domain: 10
+    output:
+      formats: ["json", "html"]
+      compress_output: true
+
+# Secrets for sensitive configuration
+secrets:
+  # Create secrets for sensitive data
+  create: true
+  # Secret data
+  data:
+    # Redis password (if using external Redis)
+    redis_password: ""
+    # Database passwords
+    postgres_password: ""
+    mongodb_password: ""
+    # API keys and tokens
+    api_secret_key: ""
+
+# ==========================================
+# DATABASE CONFIGURATION
+# ==========================================
+
+# Redis configuration
+redis:
+  enabled: true
+  # Use external Redis instance
+  external:
+    enabled: false
+    host: "redis.example.com"
+    port: 6379
+    password: ""
+  # Bitnami Redis chart values
+  auth:
+    enabled: true
+    password: "pixeltracker-redis"
+  master:
+    persistence:
+      enabled: true
+      size: 8Gi
+  replica:
+    replicaCount: 1
+    persistence:
+      enabled: true
+      size: 8Gi
+
+# PostgreSQL configuration
+postgresql:
+  enabled: true
+  # Use external PostgreSQL instance
+  external:
+    enabled: false
+    host: "postgres.example.com"
+    port: 5432
+    database: "pixeltracker"
+    username: "pixeltracker"
+    password: ""
+  # Bitnami PostgreSQL chart values
+  auth:
+    postgresPassword: "pixeltracker-admin"
+    username: "pixeltracker"
+    password: "pixeltracker-password"
+    database: "pixeltracker"
+  primary:
+    persistence:
+      enabled: true
+      size: 20Gi
+
+# MongoDB configuration
+mongodb:
+  enabled: false
+  # Use external MongoDB instance
+  external:
+    enabled: false
+    host: "mongodb.example.com"
+    port: 27017
+    database: "pixeltracker"
+    username: "pixeltracker"
+    password: ""
+  # Bitnami MongoDB chart values
+  auth:
+    enabled: true
+    rootPassword: "pixeltracker-root"
+    username: "pixeltracker"
+    password: "pixeltracker-password"
+    database: "pixeltracker"
+  persistence:
+    enabled: true
+    size: 20Gi
+
+# Elasticsearch configuration
+elasticsearch:
+  enabled: false
+  # Use external Elasticsearch instance
+  external:
+    enabled: false
+    host: "elasticsearch.example.com"
+    port: 9200
+    username: ""
+    password: ""
+  # Elastic Elasticsearch chart values
+  replicas: 1
+  volumeClaimTemplate:
+    resources:
+      requests:
+        storage: 30Gi
+
+# ==========================================
+# MONITORING CONFIGURATION
+# ==========================================
+
+monitoring:
+  # Prometheus configuration
+  prometheus:
+    enabled: false
+    # ServiceMonitor for Prometheus Operator
+    serviceMonitor:
+      enabled: true
+      interval: 30s
+      path: /metrics
+      labels: {}
+    # Prometheus rules
+    prometheusRule:
+      enabled: true
+      labels: {}
+      rules:
+        - alert: PixelTrackerDown
+          expr: up{job="pixeltracker"} == 0
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "PixelTracker instance is down"
+            description: "PixelTracker instance {{ $labels.instance }} has been down for more than 5 minutes."
+        - alert: HighMemoryUsage
+          expr: (container_memory_usage_bytes{pod=~"pixeltracker-.*"} / container_spec_memory_limit_bytes) * 100 > 80
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "High memory usage detected"
+            description: "Memory usage is above 80% for {{ $labels.pod }}"
+
+  # Grafana configuration
+  grafana:
+    enabled: false
+    # Dashboard configuration
+    dashboards:
+      enabled: true
+      # ConfigMap with dashboard JSON
+      configMapName: "pixeltracker-dashboards"
+
+# Metrics and health checks
+healthCheck:
+  enabled: true
+  # Liveness probe configuration
+  livenessProbe:
+    httpGet:
+      path: /health
+      port: 8080
+    initialDelaySeconds: 30
+    periodSeconds: 30
+    timeoutSeconds: 5
+    failureThreshold: 3
+  # Readiness probe configuration
+  readinessProbe:
+    httpGet:
+      path: /health/ready
+      port: 8080
+    initialDelaySeconds: 5
+    periodSeconds: 10
+    timeoutSeconds: 3
+    failureThreshold: 3
+
+# ==========================================
+# AUTOSCALING CONFIGURATION
+# ==========================================
+
+# Horizontal Pod Autoscaler
+autoscaling:
+  enabled: false
+  minReplicas: 3
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 70
+  targetMemoryUtilizationPercentage: 80
+
+# Pod Disruption Budget
+podDisruptionBudget:
+  enabled: true
+  minAvailable: 2
+
+# ==========================================
+# RBAC CONFIGURATION
+# ==========================================
+
+# Service Account
+serviceAccount:
+  create: true
+  name: ""
+  annotations: {}
+
+# RBAC
+rbac:
+  create: true
+  # Rules for the service account
+  rules:
+    - apiGroups: [""]
+      resources: ["configmaps", "secrets"]
+      verbs: ["get", "list", "watch"]
+
+# Pod Security Policy (if enabled in cluster)
+podSecurityPolicy:
+  enabled: false
+
+# ==========================================
+# NETWORK POLICIES
+# ==========================================
+
+networkPolicy:
+  enabled: false
+  # Ingress rules
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              name: ingress-nginx
+      ports:
+        - protocol: TCP
+          port: 8080
+  # Egress rules
+  egress:
+    - to: []
+      ports:
+        - protocol: TCP
+          port: 53
+        - protocol: UDP
+          port: 53
+    - to:
+        - namespaceSelector: {}
+      ports:
+        - protocol: TCP
+          port: 6379  # Redis
+        - protocol: TCP
+          port: 5432  # PostgreSQL
+        - protocol: TCP
+          port: 27017 # MongoDB
+
+# ==========================================
+# BACKUP CONFIGURATION
+# ==========================================
+
+backup:
+  enabled: false
+  # Backup schedule (cron format)
+  schedule: "0 2 * * *"
+  # Retention policy
+  retention: "30d"
+  # Storage configuration for backups
+  storage:
+    type: "s3"
+    s3:
+      bucket: "pixeltracker-backups"
+      region: "us-west-2"
+      accessKey: ""
+      secretKey: ""
+
+# ==========================================
+# ENVIRONMENT-SPECIFIC OVERRIDES
+# ==========================================
+
+# Development environment overrides
+development:
+  replicaCount: 1
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "100m"
+    limits:
+      memory: "1Gi"
+      cpu: "500m"
+  persistence:
+    enabled: false
+  configMap:
+    data:
+      logging:
+        level: "DEBUG"
+      scanning:
+        concurrent_requests: 5
+        rate_limit_delay: 0.5
+
+# Production environment overrides
+production:
+  replicaCount: 3
+  resources:
+    requests:
+      memory: "1Gi"
+      cpu: "500m"
+    limits:
+      memory: "4Gi"
+      cpu: "2000m"
+  autoscaling:
+    enabled: true
+  monitoring:
+    prometheus:
+      enabled: true
+    grafana:
+      enabled: true
+
+# Enterprise environment overrides
+enterprise:
+  replicaCount: 5
+  resources:
+    requests:
+      memory: "2Gi"
+      cpu: "1000m"
+    limits:
+      memory: "8Gi"
+      cpu: "4000m"
+  redis:
+    enabled: true
+  postgresql:
+    enabled: true
+  mongodb:
+    enabled: true
+  elasticsearch:
+    enabled: true
+  monitoring:
+    prometheus:
+      enabled: true
+    grafana:
+      enabled: true
+  backup:
+    enabled: true

@@ -10,3 +10,5 @@
 2025-06-25 13:05:26,666 - tracking_pixel_scanner - ERROR - Connection error fetching https://washingtonpost.com
 2025-06-25 13:06:17,782 - tracking_pixel_scanner - INFO - Successfully fetched https://stackoverflow.com (Status: 200)
 2025-06-25 13:12:49,340 - tracking_pixel_scanner - INFO - Successfully fetched https://example.com (Status: 200)
+2025-06-25 15:36:17,374 - pixeltracker.security.security_scanner - INFO - Starting security scan of https://example.com
+2025-06-25 15:36:29,476 - pixeltracker.security.security_scanner - INFO - Starting security scan of https://example.com

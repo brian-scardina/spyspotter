@@ -1,0 +1,105 @@
+{{- if .Values.persistence.enabled }}
+{{- if .Values.volumes.data.enabled }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "pixeltracker.pvcDataName" . }}
+  labels:
+    {{- include "pixeltracker.labels" . | nindent 4 }}
+    app.kubernetes.io/component: storage
+    pixeltracker.io/volume-type: data
+  {{- with .Values.persistence.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  accessModes:
+    - {{ .Values.persistence.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.volumes.data.size }}
+  {{- $storageClass := .Values.volumes.data.storageClass | default .Values.persistence.storageClass }}
+  {{- if $storageClass }}
+  storageClassName: {{ $storageClass }}
+  {{- end }}
+{{- end }}
+
+{{- if .Values.volumes.logs.enabled }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "pixeltracker.pvcLogsName" . }}
+  labels:
+    {{- include "pixeltracker.labels" . | nindent 4 }}
+    app.kubernetes.io/component: storage
+    pixeltracker.io/volume-type: logs
+  {{- with .Values.persistence.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  accessModes:
+    - {{ .Values.persistence.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.volumes.logs.size }}
+  {{- $storageClass := .Values.volumes.logs.storageClass | default .Values.persistence.storageClass }}
+  {{- if $storageClass }}
+  storageClassName: {{ $storageClass }}
+  {{- end }}
+{{- end }}
+
+{{- if .Values.volumes.config.enabled }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "pixeltracker.pvcConfigName" . }}
+  labels:
+    {{- include "pixeltracker.labels" . | nindent 4 }}
+    app.kubernetes.io/component: storage
+    pixeltracker.io/volume-type: config
+  {{- with .Values.persistence.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  accessModes:
+    - {{ .Values.persistence.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.volumes.config.size }}
+  {{- $storageClass := .Values.volumes.config.storageClass | default .Values.persistence.storageClass }}
+  {{- if $storageClass }}
+  storageClassName: {{ $storageClass }}
+  {{- end }}
+{{- end }}
+
+{{- if .Values.volumes.cache.enabled }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "pixeltracker.pvcCacheName" . }}
+  labels:
+    {{- include "pixeltracker.labels" . | nindent 4 }}
+    app.kubernetes.io/component: storage
+    pixeltracker.io/volume-type: cache
+  {{- with .Values.persistence.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  accessModes:
+    - {{ .Values.persistence.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.volumes.cache.size }}
+  {{- $storageClass := .Values.volumes.cache.storageClass | default .Values.persistence.storageClass }}
+  {{- if $storageClass }}
+  storageClassName: {{ $storageClass }}
+  {{- end }}
+{{- end }}
+{{- end }}

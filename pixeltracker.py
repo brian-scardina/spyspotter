@@ -10,6 +10,7 @@ import asyncio
 import logging
 from pathlib import Path
 from typing import List, Optional
+from pydantic import BaseModel, field_validator
 
 # Import our modules
 try:
@@ -17,11 +18,17 @@ try:
     from tracking_pixel_scanner import TrackingPixelScanner
     from enhanced_tracking_scanner import EnhancedTrackingScanner
     from tracker_database import tracker_db
+    from pixeltracker.security import rate_limiter
+    from pixeltracker.compliance import gdpr_ccpa as compliance
+    from pixeltracker.security import security_scanner
 except ImportError as e:
     print(f"Error importing modules: {e}")
     print("Make sure all required dependencies are installed.")
     # Try to continue without tracker_db
     tracker_db = None
+    rate_limiter = None
+    compliance = None
+    security_scanner = None
 
 def setup_logging(config: Config) -> None:
     """Setup logging based on configuration"""
@@ -116,9 +123,44 @@ Examples:
     info_parser.add_argument('--dependencies', action='store_true', help='Check dependencies')
     info_parser.add_argument('--domains', action='store_true', help='Show tracked domains count')
     
+    # Security scan command
+    security_parser = subparsers.add_parser('security-scan', help='Perform comprehensive security scan')
+    security_parser.add_argument('urls', nargs='+', help='URLs to scan for security issues')
+    security_parser.add_argument('--output', '-o', help='Output file for security report')
+    security_parser.add_argument('--format', choices=['json', 'html'], default='json', help='Output format')
+    security_parser.add_argument('--check-ssl', action='store_true', help='Detailed SSL certificate analysis')
+    security_parser.add_argument('--check-csp', action='store_true', help='Analyze Content Security Policy')
+    security_parser.add_argument('--check-mixed-content', action='store_true', help='Detect mixed content issues')
+    security_parser.add_argument('--verbose', '-v', action='store_true', help='Verbose output')
+    
+    # Add additional argument groups if modules are available
+    if rate_limiter:
+        rate_limiter.add_rate_limit_args(parser)
+    if compliance:
+        compliance.add_compliance_args(parser)
+    
     return parser
 
-async def run_enhanced_scan(config: Config, args) -> None:
+class ScanArgs(BaseModel):
+    urls: List[str]
+    config: Optional[str] = None
+    output: Optional[str] = None
+    format: str = 'json'
+    verbose: bool = False
+    enhanced: bool = False
+    enable_js: bool = False
+    concurrent: Optional[int] = None
+    rate_limit: Optional[float] = None
+    detailed_report: Optional[str] = None
+
+    @field_validator('format')
+    @classmethod
+    def validate_format(cls, v):
+        if v not in ['json', 'html', 'csv']:
+            raise ValueError('format must be "json", "html", or "csv"')
+        return v
+
+async def run_enhanced_scan(config: Config, args: ScanArgs) -> None:
     """Run enhanced scanner"""
     try:
         # Override config with command line arguments
@@ -312,6 +354,70 @@ def handle_info_command(args) -> None:
             for risk, count in stats['risk_levels'].items():
                 print(f"   {risk}: {count}")
 
+async def handle_security_scan_command(args) -> None:
+    """Handle security scan command"""
+    if not security_scanner:
+        print("❌ Security scanner module not available")
+        print("Install security dependencies: pip install cryptography")
+        sys.exit(1)
+    
+    try:
+        urls = validate_urls(args.urls)
+        print(f"🔒 Starting security scan of {len(urls)} URLs...")
+        
+        all_results = []
+        
+        for url in urls:
+            print(f"\n🔍 Scanning {url}...")
+            result = security_scanner.perform_security_scan(url)
+            all_results.append(result)
+            
+            # Display summary
+            print(f"   🌐 HTTPS enabled: {'✅' if result.https_enabled else '❌'}")
+            print(f"   🔒 Security score: {result.overall_security_score}/100")
+            print(f"   ⚠️  Security level: {result.security_level}")
+            print(f"   🛡️  CSP present: {'✅' if result.csp_analysis.present else '❌'}")
+            print(f"   🔧 Mixed content issues: {len(result.mixed_content_issues)}")
+            
+            if args.verbose:
+                if result.ssl_certificate:
+                    print(f"   📜 SSL expires: {result.ssl_certificate.days_until_expiry} days")
+                if result.recommendations:
+                    print("   💡 Recommendations:")
+                    for rec in result.recommendations[:3]:
+                        print(f"      • {rec}")
+        
+        # Calculate overall statistics
+        total_score = sum(r.overall_security_score for r in all_results) / len(all_results)
+        secure_sites = sum(1 for r in all_results if r.security_level == 'secure')
+        
+        print(f"\n📊 Security Scan Summary:")
+        print(f"   📈 Average security score: {total_score:.1f}/100")
+        print(f"   ✅ Secure sites: {secure_sites}/{len(all_results)}")
+        print(f"   🔒 HTTPS adoption: {sum(1 for r in all_results if r.https_enabled)}/{len(all_results)}")
+        
+        # Save results if requested
+        if args.output:
+            import json
+            output_data = {
+                'scan_summary': {
+                    'total_urls': len(all_results),
+                    'average_security_score': total_score,
+                    'secure_sites': secure_sites,
+                    'https_adoption': sum(1 for r in all_results if r.https_enabled)
+                },
+                'results': [result.to_dict() for result in all_results]
+            }
+            
+            with open(args.output, 'w') as f:
+                json.dump(output_data, f, indent=2, default=str)
+            
+            print(f"💾 Security report saved to {args.output}")
+        
+    except Exception as e:
+        logging.error(f"Security scan failed: {e}")
+        sys.exit(1)
+
 async def main():
     """Main entry point"""
     parser = create_parser()
@@ -344,6 +450,9 @@ async def main():
     
     elif args.command == 'info':
         handle_info_command(args)
+    
+    elif args.command == 'security-scan':
+        await handle_security_scan_command(args)
     
     else:
         parser.print_help()

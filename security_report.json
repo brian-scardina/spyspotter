@@ -1,0 +1,113 @@
+{
+  "scan_summary": {
+    "total_urls": 1,
+    "average_security_score": 50.0,
+    "secure_sites": 0,
+    "https_adoption": 1
+  },
+  "results": [
+    {
+      "url": "https://example.com",
+      "timestamp": "2025-06-25T15:36:30.112831",
+      "https_enabled": true,
+      "ssl_certificate": {
+        "subject": "CN=*.example.com,O=Internet Corporation for Assigned Names and Numbers,L=Los Angeles,ST=California,C=US",
+        "issuer": "CN=DigiCert Global G3 TLS ECC SHA384 2020 CA1,O=DigiCert Inc,C=US",
+        "valid_from": "2025-01-15T00:00:00",
+        "valid_to": "2026-01-15T23:59:59",
+        "is_valid": true,
+        "is_expired": false,
+        "days_until_expiry": 204,
+        "signature_algorithm": "ecdsa-with-SHA384",
+        "key_size": 256,
+        "san_domains": [
+          "*.example.com",
+          "example.com"
+        ]
+      },
+      "csp_analysis": {
+        "present": false,
+        "directives": [],
+        "security_score": 0,
+        "violations": [
+          "No Content Security Policy found"
+        ],
+        "recommendations": [
+          "Implement Content Security Policy to prevent XSS attacks",
+          "Start with CSP in report-only mode for testing"
+        ],
+        "report_only": false
+      },
+      "security_headers": [
+        {
+          "name": "Strict-Transport-Security",
+          "value": null,
+          "present": false,
+          "security_level": "vulnerable",
+          "recommendations": [
+            "Add Strict-Transport-Security header: HSTS header enforces HTTPS"
+          ]
+        },
+        {
+          "name": "X-Content-Type-Options",
+          "value": null,
+          "present": false,
+          "security_level": "vulnerable",
+          "recommendations": [
+            "Add X-Content-Type-Options header: Prevents MIME type sniffing"
+          ]
+        },
+        {
+          "name": "X-Frame-Options",
+          "value": null,
+          "present": false,
+          "security_level": "vulnerable",
+          "recommendations": [
+            "Add X-Frame-Options header: Prevents clickjacking attacks"
+          ]
+        },
+        {
+          "name": "X-XSS-Protection",
+          "value": null,
+          "present": false,
+          "security_level": "warning",
+          "recommendations": [
+            "Add X-XSS-Protection header: Legacy XSS protection"
+          ]
+        },
+        {
+          "name": "Referrer-Policy",
+          "value": null,
+          "present": false,
+          "security_level": "vulnerable",
+          "recommendations": [
+            "Add Referrer-Policy header: Controls referrer information"
+          ]
+        },
+        {
+          "name": "Permissions-Policy",
+          "value": null,
+          "present": false,
+          "security_level": "warning",
+          "recommendations": [
+            "Add Permissions-Policy header: Controls browser features"
+          ]
+        }
+      ],
+      "mixed_content_issues": [],
+      "insecure_requests": [],
+      "overall_security_score": 50,
+      "security_level": "vulnerable",
+      "recommendations": [
+        "Implement Content Security Policy to prevent XSS attacks",
+        "Start with CSP in report-only mode for testing",
+        "Add Strict-Transport-Security header: HSTS header enforces HTTPS",
+        "Add X-Content-Type-Options header: Prevents MIME type sniffing",
+        "Add X-Frame-Options header: Prevents clickjacking attacks",
+        "Add X-XSS-Protection header: Legacy XSS protection",
+        "Add Referrer-Policy header: Controls referrer information",
+        "Add Permissions-Policy header: Controls browser features"
+      ]
+    }
+  ]
+}
