@@ -1,0 +1,215 @@
+[
+  {
+    "url": "https://techcrunch.com",
+    "pixel_count": 0,
+    "js_tracker_count": 6,
+    "meta_tracker_count": 7,
+    "css_tracker_count": 0,
+    "tracking_pixels": [],
+    "javascript_trackers": [
+      {
+        "type": "inline_script",
+        "pattern": "dataLayer\\.push",
+        "content_snippet": "\n\t\t// Map the datalayer values before initiation.\n\t\twindow.dataLayer      = window.dataLayer || [];\n\t\twindow.tenupDataLayer = window.tenupDataLayer || [];\n\t\twindow.tenupDataLayer = {\"environment\":\"pro..."
+      },
+      {
+        "type": "inline_script",
+        "pattern": "utm_",
+        "content_snippet": "\n\t\t// Map the datalayer values before initiation.\n\t\twindow.dataLayer      = window.dataLayer || [];\n\t\twindow.tenupDataLayer = window.tenupDataLayer || [];\n\t\twindow.tenupDataLayer = {\"environment\":\"pro..."
+      },
+      {
+        "type": "inline_script",
+        "pattern": "gtm\\.",
+        "content_snippet": "\n\t\t// Map the datalayer values before initiation.\n\t\twindow.dataLayer      = window.dataLayer || [];\n\n\t\t\n\t\t(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\n\t\t\tnew Date().getTime(),event:'gtm...."
+      },
+      {
+        "type": "external_script",
+        "domain": "scorecardresearch.com",
+        "src": "https://sb.scorecardresearch.com/beacon.js?ver=250625",
+        "element": "<script async=\"\" data-wp-strategy=\"async\" id=\"tc-comscore-js\" src=\"https://sb.scorecardresearch.com/beacon.js?ver=250625\"></script>"
+      },
+      {
+        "type": "inline_script",
+        "pattern": "hubspot",
+        "content_snippet": "\nvar tcAnalytics = {\"isDebug\":\"false\",\"restRoot\":\"https:\\/\\/techcrunch.com\\/wp-json\\/\",\"hubspotPortalId\":\"44101848\",\"facebookPixelId\":\"1447508128842484\"};\n"
+      },
+      {
+        "type": "inline_script",
+        "pattern": "pixel",
+        "content_snippet": "\nvar tcAnalytics = {\"isDebug\":\"false\",\"restRoot\":\"https:\\/\\/techcrunch.com\\/wp-json\\/\",\"hubspotPortalId\":\"44101848\",\"facebookPixelId\":\"1447508128842484\"};\n"
+      }
+    ],
+    "meta_trackers": [
+      {
+        "type": "social_meta",
+        "property": "og:locale",
+        "content": "en_US",
+        "element": "<meta content=\"en_US\" property=\"og:locale\"/>"
+      },
+      {
+        "type": "social_meta",
+        "property": "og:type",
+        "content": "website",
+        "element": "<meta content=\"website\" property=\"og:type\"/>"
+      },
+      {
+        "type": "social_meta",
+        "property": "og:title",
+        "content": "TechCrunch | Startup and Technology News",
+        "element": "<meta content=\"TechCrunch | Startup and Technology News\" property=\"og:title\"/>"
+      },
+      {
+        "type": "social_meta",
+        "property": "og:description",
+        "content": "TechCrunch | Reporting on the business of technology, startups, venture capital funding, and Silicon Valley",
+        "element": "<meta content=\"TechCrunch | Reporting on the business of technology, startups, venture capital funding, and Silicon Valley\" property=\"og:description\"/>"
+      },
+      {
+        "type": "social_meta",
+        "property": "og:url",
+        "content": "https://techcrunch.com/",
+        "element": "<meta content=\"https://techcrunch.com/\" property=\"og:url\"/>"
+      },
+      {
+        "type": "social_meta",
+        "property": "og:site_name",
+        "content": "TechCrunch",
+        "element": "<meta content=\"TechCrunch\" property=\"og:site_name\"/>"
+      },
+      {
+        "type": "social_meta",
+        "property": "og:image",
+        "content": "https://techcrunch.com/wp-content/uploads/2018/04/tc-logo-2018-square-reverse2x.png",
+        "element": "<meta content=\"https://techcrunch.com/wp-content/uploads/2018/04/tc-logo-2018-square-reverse2x.png\" property=\"og:image\"/>"
+      }
+    ],
+    "css_trackers": [],
+    "summary": {
+      "total_trackers": 13,
+      "domains_found": [
+        "scorecardresearch.com"
+      ],
+      "tracking_types": {
+        "pixels": 0,
+        "javascript": 6,
+        "meta_tags": 7,
+        "css_background": 0
+      }
+    }
+  },
+  {
+    "url": "https://reddit.com",
+    "pixel_count": 1,
+    "js_tracker_count": 6,
+    "meta_tracker_count": 8,
+    "css_tracker_count": 0,
+    "tracking_pixels": [
+      {
+        "element_type": "img",
+        "src": "https://id.rlcdn.com/472486.gif",
+        "width": "",
+        "height": "",
+        "is_1x1_pixel": false,
+        "tracking_domain": "rlcdn.com",
+        "has_tracking_params": false,
+        "in_noscript": false,
+        "full_element": "<img hidden=\"\" src=\"https://id.rlcdn.com/472486.gif\"/>"
+      }
+    ],
+    "javascript_trackers": [
+      {
+        "type": "inline_script",
+        "pattern": "Sentry\\.",
+        "content_snippet": "let e;Promise.resolve();let n=null;async function i(){return n||(n=async function(){if(e=window.navigation,!e){console.log(\"Navigation API not supported, loading polyfill\");try{const{applyPolyfill:n}=..."
+      },
+      {
+        "type": "inline_script",
+        "pattern": "sentry",
+        "content_snippet": "let e;Promise.resolve();let n=null;async function i(){return n||(n=async function(){if(e=window.navigation,!e){console.log(\"Navigation API not supported, loading polyfill\");try{const{applyPolyfill:n}=..."
+      },
+      {
+        "type": "inline_script",
+        "pattern": "beacon",
+        "content_snippet": "\n      window.STICKY_CANARY = 'false';\n      if(\"fetch\"in window){const n=window.fetch;window.fetch=function(a,t){const e=new Headers(t?.headers),r=a instanceof Request?a.url:a,s=!new URLSearchParams(..."
+      },
+      {
+        "type": "inline_script",
+        "pattern": "event\\(",
+        "content_snippet": "\n      class e extends HTMLElement{constructor(){super(...arguments),this.marked=!1}connectedCallback(){if(this.marked)return;const e=this.getAttribute(\"name\");if(!e)throw new Error(\"No name attribute..."
+      },
+      {
+        "type": "inline_script",
+        "pattern": "event\\(",
+        "content_snippet": "\n      function e(e,t,n=!0){return new CustomEvent(e,{composed:!0,bubbles:n,cancelable:!0,detail:t})}let t=!0;const n=[];function o(e){t&&n.push(e)}window.addEventListener(\"faceplate-alert\",o),window...."
+      },
+      {
+        "type": "inline_script",
+        "pattern": "sentry",
+        "content_snippet": "\n          var SENTRY_CONFIG = {\"dsn\":\"https://9f057df6115a4bb488c08ea12a835e6e@error-tracking.reddit.com/o418887/5810803\",\"enabled\":true,\"environment\":\"production\"};\n        "
+      }
+    ],
+    "meta_trackers": [
+      {
+        "type": "social_meta",
+        "property": "og:image",
+        "content": "https://www.redditstatic.com/shreddit/assets/favicon/192x192.png",
+        "element": "<meta content=\"https://www.redditstatic.com/shreddit/assets/favicon/192x192.png\" property=\"og:image\"/>"
+      },
+      {
+        "type": "social_meta",
+        "property": "og:image:width",
+        "content": "256",
+        "element": "<meta content=\"256\" property=\"og:image:width\"/>"
+      },
+      {
+        "type": "social_meta",
+        "property": "og:image:height",
+        "content": "256",
+        "element": "<meta content=\"256\" property=\"og:image:height\"/>"
+      },
+      {
+        "type": "social_meta",
+        "property": "og:site_name",
+        "content": "Reddit",
+        "element": "<meta content=\"Reddit\" property=\"og:site_name\"/>"
+      },
+      {
+        "type": "social_meta",
+        "property": "og:title",
+        "content": "reddit",
+        "element": "<meta content=\"reddit\" property=\"og:title\"/>"
+      },
+      {
+        "type": "social_meta",
+        "property": "og:ttl",
+        "content": "600",
+        "element": "<meta content=\"600\" property=\"og:ttl\"/>"
+      },
+      {
+        "type": "social_meta",
+        "property": "og:type",
+        "content": "website",
+        "element": "<meta content=\"website\" property=\"og:type\"/>"
+      },
+      {
+        "type": "social_meta",
+        "property": "og:url",
+        "content": "https://www.reddit.com/",
+        "element": "<meta content=\"https://www.reddit.com/\" property=\"og:url\"/>"
+      }
+    ],
+    "css_trackers": [],
+    "summary": {
+      "total_trackers": 15,
+      "domains_found": [
+        "rlcdn.com"
+      ],
+      "tracking_types": {
+        "pixels": 1,
+        "javascript": 6,
+        "meta_tags": 8,
+        "css_background": 0
+      }
+    }
+  }
+]

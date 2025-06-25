@@ -1,0 +1,12 @@
+2025-06-25 12:56:38,004 - tracking_pixel_scanner - INFO - Successfully fetched https://example.com (Status: 200)
+2025-06-25 12:56:47,743 - tracking_pixel_scanner - INFO - Successfully fetched https://cnn.com (Status: 200)
+2025-06-25 12:56:58,091 - tracking_pixel_scanner - INFO - Successfully fetched https://cnn.com (Status: 200)
+2025-06-25 12:57:18,532 - tracking_pixel_scanner - INFO - Successfully fetched https://example.com (Status: 200)
+2025-06-25 12:57:19,589 - tracking_pixel_scanner - INFO - Successfully fetched https://github.com (Status: 200)
+2025-06-25 13:04:29,880 - tracking_pixel_scanner - ERROR - HTTP error fetching https://facebook.com: 400 Client Error: Bad Request for url: https://www.facebook.com/
+2025-06-25 13:04:50,113 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='www.washingtonpost.com', port=443): Read timed out. (read timeout=10)")': /
+2025-06-25 13:05:02,257 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='www.washingtonpost.com', port=443): Read timed out. (read timeout=10)")': /
+2025-06-25 13:05:16,458 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='www.washingtonpost.com', port=443): Read timed out. (read timeout=10)")': /
+2025-06-25 13:05:26,666 - tracking_pixel_scanner - ERROR - Connection error fetching https://washingtonpost.com
+2025-06-25 13:06:17,782 - tracking_pixel_scanner - INFO - Successfully fetched https://stackoverflow.com (Status: 200)
+2025-06-25 13:12:49,340 - tracking_pixel_scanner - INFO - Successfully fetched https://example.com (Status: 200)

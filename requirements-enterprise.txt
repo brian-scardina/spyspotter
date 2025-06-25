@@ -1,0 +1,18 @@
+# Enterprise/production dependencies
+# Include core requirements
+-r requirements-core.txt
+
+# Task queue and caching
+celery>=5.2.0
+redis>=4.0.0
+
+# Database and search
+pymongo>=4.0.0
+elasticsearch>=8.0.0
+
+# Monitoring and metrics
+prometheus-client>=0.14.0
+grafana-api>=1.0.0
+
+# Additional file handling
+aiofiles>=0.8.0

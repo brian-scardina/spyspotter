@@ -1,0 +1,84 @@
+[
+  {
+    "url": "https://devstaging.pcapcloud.com",
+    "scan_timestamp": "2025-06-25T11:32:26.656835",
+    "pixel_count": 2,
+    "js_tracker_count": 3,
+    "meta_tracker_count": 0,
+    "css_tracker_count": 0,
+    "tracking_pixels": [
+      {
+        "element_type": "iframe",
+        "src": "https://www.googletagmanager.com/ns.html?id=GTM-5K7PH4N",
+        "width": "0",
+        "height": "0",
+        "is_1x1_pixel": true,
+        "tracking_domain": "googletagmanager.com",
+        "has_tracking_params": false,
+        "in_noscript": false,
+        "full_element": "<iframe height=\"0\" src=\"https://www.googletagmanager.com/ns.html?id=GTM-5K7PH4N\" style=\"display:none;visibility:hidden\" width=\"0\"></iframe>"
+      },
+      {
+        "element_type": "iframe",
+        "src": "https://www.googletagmanager.com/ns.html?id=GTM-5K7PH4N",
+        "width": "0",
+        "height": "0",
+        "is_1x1_pixel": true,
+        "tracking_domain": "googletagmanager.com",
+        "has_tracking_params": false,
+        "in_noscript": true,
+        "full_element": "<iframe height=\"0\" src=\"https://www.googletagmanager.com/ns.html?id=GTM-5K7PH4N\" style=\"display:none;visibility:hidden\" width=\"0\"></iframe>"
+      }
+    ],
+    "javascript_trackers": [
+      {
+        "type": "inline_script",
+        "pattern": "optimizely",
+        "content_snippet": "\n\t\t// setup redirectUrl based on environment\n\t\tvar mobileRedirectUrl='https://www-devtrunk.pcapcloud.com/redirectMobile';\n\n\t\tconst IS_PRODUCTION_ENVIRONMENT = window.location.host.toLowerCase() === \"h..."
+      },
+      {
+        "type": "inline_script",
+        "pattern": "gtm\\.",
+        "content_snippet": "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\n        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\n        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j..."
+      },
+      {
+        "type": "external_script",
+        "domain": "optimizely.com",
+        "src": "https://cdn.optimizely.com/js/25758810713.js",
+        "element": "<script src=\"https://cdn.optimizely.com/js/25758810713.js\"></script>"
+      }
+    ],
+    "meta_trackers": [],
+    "css_trackers": [],
+    "summary": {
+      "total_trackers": 5,
+      "domains_found": [
+        "googletagmanager.com",
+        "optimizely.com"
+      ],
+      "tracking_types": {
+        "pixels": 2,
+        "javascript": 3,
+        "meta_tags": 0,
+        "css_background": 0
+      }
+    },
+    "privacy_analysis": {
+      "privacy_score": 56,
+      "risk_level": "Medium",
+      "detected_categories": [
+        "advertising",
+        "user_experience"
+      ],
+      "high_risk_domains": [
+        "googletagmanager.com",
+        "googletagmanager.com"
+      ],
+      "recommendations": [
+        "Consider using ad blockers or privacy-focused browsers",
+        "Review and adjust ad personalization settings",
+        "High-risk tracking domains detected - consider VPN usage"
+      ]
+    }
+  }
+]

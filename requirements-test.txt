@@ -1,0 +1,37 @@
+# Core testing dependencies
+pytest>=7.0.0
+pytest-cov>=4.0.0
+pytest-asyncio>=0.21.0
+pytest-benchmark>=4.0.0
+pytest-xdist>=3.0.0  # For parallel test execution
+pytest-mock>=3.10.0
+
+# HTTP mocking libraries
+responses>=0.23.0
+requests-mock>=1.10.0
+httpx-mock>=0.10.0  # For async HTTP testing
+aioresponses>=0.7.4  # For aiohttp mocking
+
+# Test server for integration tests
+aiohttp>=3.8.0
+pytest-aiohttp>=1.0.4
+
+# HTML fixtures and data generation
+factory-boy>=3.2.0
+faker>=18.0.0
+Jinja2>=3.1.0  # For generating test HTML
+
+# Performance testing
+asv>=0.5.1  # Airspeed Velocity for benchmarking
+memory-profiler>=0.60.0
+psutil>=5.9.0
+
+# Test utilities
+freezegun>=1.2.0  # For time mocking
+testfixtures>=7.0.0
+pyfakefs>=5.0.0  # For filesystem mocking
+
+# Code quality in tests
+mypy>=1.0.0
+types-requests>=2.28.0
+types-beautifulsoup4>=4.11.0

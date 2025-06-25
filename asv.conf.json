@@ -1,0 +1,25 @@
+{
+    "version": 1,
+    "project": "PixelTracker",
+    "project_url": "https://github.com/yourorg/pixeltracker",
+    "repo": ".",
+    "install_command": ["python", "-m", "pip", "install", "{wheel_file}"],
+    "uninstall_command": ["return-code=any", "python", "-m", "pip", "uninstall", "-y", "{project}"],
+    "build_command": [
+        "python", "setup.py", "build_ext", "--inplace"
+    ],
+    "branches": ["main", "develop"],
+    "environment_type": "virtualenv",
+    "show_commit_url": "https://github.com/yourorg/pixeltracker/commit/",
+    "pythons": ["3.8", "3.9", "3.10", "3.11"],
+    "matrix": {
+        "req": {
+            "core": ["requirements-core.txt"],
+            "full": ["requirements.txt"]
+        }
+    },
+    "benchmark_dir": "benchmarks",
+    "env_dir": ".asv/env",
+    "results_dir": ".asv/results",
+    "html_dir": ".asv/html"
+}

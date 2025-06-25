@@ -1,0 +1,201 @@
+[
+  {
+    "url": "https://github.com",
+    "scan_timestamp": "2025-06-24T21:50:48.642778",
+    "pixel_count": 0,
+    "js_tracker_count": 0,
+    "meta_tracker_count": 9,
+    "css_tracker_count": 0,
+    "tracking_pixels": [],
+    "javascript_trackers": [],
+    "meta_trackers": [
+      {
+        "type": "verification_meta",
+        "name": "google-site-verification",
+        "content": "Apib7-x98H0j5cPqHWwSMm6dNU4GmODRoqxLiDzdx9I",
+        "element": "<meta content=\"Apib7-x98H0j5cPqHWwSMm6dNU4GmODRoqxLiDzdx9I\" name=\"google-site-verification\"/>"
+      },
+      {
+        "type": "social_meta",
+        "property": "fb:app_id",
+        "content": "1401488693436528",
+        "element": "<meta content=\"1401488693436528\" property=\"fb:app_id\"/>"
+      },
+      {
+        "type": "social_meta",
+        "property": "og:image",
+        "content": "https://github.githubassets.com/assets/home24-5939032587c9.jpg",
+        "element": "<meta content=\"https://github.githubassets.com/assets/home24-5939032587c9.jpg\" property=\"og:image\"><meta content=\"Join the world's most widely adopted, AI-powered developer platform where millions of developers, businesses, and the largest open source community build software that advances humanity.\" property=\"og:image:alt\"/><meta content=\"GitHub\" property=\"og:site_name\"/><meta content=\"object\" property=\"og:type\"/><meta content=\"GitHub \u00b7 Build and ship software on a single, collaborative platform\" property=\"og:title\"/><meta content=\"https://github.com/\" property=\"og:url\"/><meta content=\"Join the world's most widely adopted, AI-powered developer platform where millions of developers, businesses, and the largest open source community build software that advances humanity.\" property=\"og:description\"/>\n<meta content=\"github.com\" name=\"hostname\"/>\n<meta content=\"github.com\" name=\"expected-hostname\"/>\n<meta content=\"fab5cc7ad304c75cbad789c925c0319e10a365094a1809b2ac6f4a8f73b2ad1a\" data-turbo-track=\"reload\" http-equiv=\"x-pjax-version\"/>\n<meta content=\"90c8b1b1abdae6e1d52cbdb0bc61ddf4abb5544d4a9b8a21339dbd632f6b4866\" data-turbo-track=\"reload\" http-equiv=\"x-pjax-csp-version\"/>\n<meta content=\"f5deb776f7eb657ef9b5707891a044306ba6103f73a02b71646e80dc29a271e7\" data-turbo-track=\"reload\" http-equiv=\"x-pjax-css-version\"/>\n<meta content=\"6c8068526b5fbdfa50c783d5492c83164437c4b49e19399a33fb8292dff90db7\" data-turbo-track=\"reload\" http-equiv=\"x-pjax-js-version\"/>\n<meta content=\"no-preview\" data-turbo-transient=\"\" name=\"turbo-cache-control\"/>\n<meta content=\"no-cache\" data-turbo-transient=\"\" name=\"turbo-cache-control\"/>\n<meta content=\"true\" name=\"is_logged_out_page\"/>\n<meta content=\"marketing\" name=\"octolytics-page-type\"/>\n<meta content=\"Platform\" name=\"octolytics-revenue-play\"/>\n<link href=\"https://github.com/?locale=ja\" hreflang=\"ja\" rel=\"alternate\">\n<link href=\"https://github.com/?locale=ko\" hreflang=\"ko\" rel=\"alternate\">\n<link href=\"https://github.com/?locale=pt\" hreflang=\"pt\" rel=\"alternate\">\n<link href=\"https://github.com/?locale=es\" hreflang=\"es\" rel=\"alternate\"/>\n<link data-turbo-transient=\"\" href=\"https://github.com\" rel=\"canonical\"/>\n<meta content=\"logged-out env-production page-responsive header-overlay header-overlay-fixed js-header-overlay-fixed\" name=\"turbo-body-classes\"/>\n<meta content=\"https://api.github.com/_private/browser/stats\" name=\"browser-stats-url\"/>\n<meta content=\"https://api.github.com/_private/browser/errors\" name=\"browser-errors-url\"/>\n<meta content=\"98305ca72c9e6652db063f959fb538655fc84353\" name=\"release\"/>\n<link color=\"#000000\" href=\"https://github.githubassets.com/assets/pinned-octocat-093da3e6fa40.svg\" rel=\"mask-icon\"/>\n<link class=\"js-site-favicon\" href=\"https://github.githubassets.com/favicons/favicon.png\" rel=\"alternate icon\" type=\"image/png\"/>\n<link class=\"js-site-favicon\" data-base-href=\"https://github.githubassets.com/favicons/favicon\" href=\"https://github.githubassets.com/favicons/favicon.svg\" rel=\"icon\" type=\"image/svg+xml\"/>\n<meta content=\"#1e2327\" name=\"theme-color\"/>\n<meta content=\"light dark\" name=\"color-scheme\">\n<link crossorigin=\"use-credentials\" href=\"/manifest.json\" rel=\"manifest\"/>\n</meta></link></link></link></meta>"
+      },
+      {
+        "type": "social_meta",
+        "property": "og:image:alt",
+        "content": "Join the world's most widely adopted, AI-powered developer platform where millions of developers, businesses, and the largest open source community build software that advances humanity.",
+        "element": "<meta content=\"Join the world's most widely adopted, AI-powered developer platform where millions of developers, businesses, and the largest open source community build software that advances humanity.\" property=\"og:image:alt\"/>"
+      },
+      {
+        "type": "social_meta",
+        "property": "og:site_name",
+        "content": "GitHub",
+        "element": "<meta content=\"GitHub\" property=\"og:site_name\"/>"
+      },
+      {
+        "type": "social_meta",
+        "property": "og:type",
+        "content": "object",
+        "element": "<meta content=\"object\" property=\"og:type\"/>"
+      },
+      {
+        "type": "social_meta",
+        "property": "og:title",
+        "content": "GitHub \u00b7 Build and ship software on a single, collaborative platform",
+        "element": "<meta content=\"GitHub \u00b7 Build and ship software on a single, collaborative platform\" property=\"og:title\"/>"
+      },
+      {
+        "type": "social_meta",
+        "property": "og:url",
+        "content": "https://github.com/",
+        "element": "<meta content=\"https://github.com/\" property=\"og:url\"/>"
+      },
+      {
+        "type": "social_meta",
+        "property": "og:description",
+        "content": "Join the world's most widely adopted, AI-powered developer platform where millions of developers, businesses, and the largest open source community build software that advances humanity.",
+        "element": "<meta content=\"Join the world's most widely adopted, AI-powered developer platform where millions of developers, businesses, and the largest open source community build software that advances humanity.\" property=\"og:description\"/>"
+      }
+    ],
+    "css_trackers": [],
+    "summary": {
+      "total_trackers": 9,
+      "domains_found": [],
+      "tracking_types": {
+        "pixels": 0,
+        "javascript": 0,
+        "meta_tags": 9,
+        "css_background": 0
+      }
+    },
+    "privacy_analysis": {
+      "privacy_score": 100,
+      "risk_level": "Low",
+      "detected_categories": [],
+      "high_risk_domains": [],
+      "recommendations": [
+        "Minimal tracking detected - privacy impact is low"
+      ]
+    }
+  },
+  {
+    "url": "https://stackoverflow.com",
+    "scan_timestamp": "2025-06-24T21:50:49.092119",
+    "pixel_count": 0,
+    "js_tracker_count": 7,
+    "meta_tracker_count": 6,
+    "css_tracker_count": 0,
+    "tracking_pixels": [],
+    "javascript_trackers": [
+      {
+        "type": "inline_script",
+        "pattern": "event\\(",
+        "content_snippet": "\n    dispatchEvent(new CustomEvent(\"openSignupModal\"));\n"
+      },
+      {
+        "type": "inline_script",
+        "pattern": "twitter",
+        "content_snippet": "{\"ContainerElementId\":\"homepage-wizard-container\",\"FKey\":\"f62c23e9df0c16ba7570f392fc79fd25aa13adbb548b992c58c727e1e7ee186b\",\"Tags\":[\"javascript\",\"python\",\"java\",\"c#\",\"php\",\"android\",\"html\",\"jquery\",\"c..."
+      },
+      {
+        "type": "inline_script",
+        "pattern": "event\\(",
+        "content_snippet": ";(()=>{\"use strict\";var __webpack_modules__={23:(e,t,s)=>{s.d(t,{Z7:()=>c,eq:()=>l,kG:()=>d});const n=\"248424177\",o=(a=location.pathname,/^\\/tags\\//.test(a)||/^\\/questions\\/tagged\\//.test(a)?\"tag-page..."
+      },
+      {
+        "type": "external_script",
+        "domain": "googletagmanager.com",
+        "src": "https://www.googletagmanager.com/gtag/js?id=G-WCZ03SZFCQ",
+        "element": "<script async=\"\" src=\"https://www.googletagmanager.com/gtag/js?id=G-WCZ03SZFCQ\"></script>"
+      },
+      {
+        "type": "inline_script",
+        "pattern": "gtag\\(.*?\\)",
+        "content_snippet": "\n                window.dataLayer = window.dataLayer || [];\n                function gtag() { dataLayer.push(arguments); }\n            "
+      },
+      {
+        "type": "inline_script",
+        "pattern": "dataLayer\\.push",
+        "content_snippet": "\n                window.dataLayer = window.dataLayer || [];\n                function gtag() { dataLayer.push(arguments); }\n            "
+      },
+      {
+        "type": "inline_script",
+        "pattern": "pageview",
+        "content_snippet": "\n            StackExchange.ready(function() {\n\n                var ga3Settings = {\n                    autoLink: [\"stackoverflow.blog\",\"info.stackoverflowsolutions.com\",\"stackoverflowsolutions.com\"],\n..."
+      }
+    ],
+    "meta_trackers": [
+      {
+        "type": "social_meta",
+        "property": "og:type",
+        "content": "website",
+        "element": "<meta content=\"website\" property=\"og:type\">\n<meta content=\"https://stackoverflow.com/questions\" property=\"og:url\"/>\n<meta content=\"Stack Overflow\" property=\"og:site_name\"/>\n<meta content=\"https://cdn.sstatic.net/Sites/stackoverflow/Img/apple-touch-icon@2.png?v=73d79a89bded\" itemprop=\"image primaryImageOfPage\" property=\"og:image\"/>\n<script type=\"application/ld+json\">\n            {\n              \"@context\" : \"https://schema.org\",\n              \"@type\" : \"WebSite\",\n              \"name\" : \"Stack Overflow\",\n              \"url\" : \"https://stackoverflow.com\"\n            }\n        </script>\n<meta content=\"summary\" name=\"twitter:card\"/>\n<meta content=\"stackoverflow.com\" name=\"twitter:domain\"/>\n<meta content=\"Newest Questions\" itemprop=\"name\" name=\"twitter:title\" property=\"og:title\"/>\n<meta content=\"Stack Overflow | The World\u2019s Largest Online Community for Developers\" itemprop=\"description\" name=\"twitter:description\" property=\"og:description\"/>\n<script id=\"webpack-public-path\" type=\"text/uri-list\">https://cdn.sstatic.net/</script>\n<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js\"></script>\n<script defer=\"\" src=\"https://cdn.sstatic.net/Js/third-party/npm/@stackoverflow/stacks/dist/js/stacks.min.js?v=50aa961744df\"></script>\n<script src=\"https://cdn.sstatic.net/Js/stub.en.js?v=9897abb98316\"></script>\n<link href=\"https://cdn.sstatic.net/Shared/stacks.css?v=af8ee92b6464\" rel=\"stylesheet\" type=\"text/css\"/>\n<link href=\"https://cdn.sstatic.net/Sites/stackoverflow/primary.css?v=6839c0a3a27c\" rel=\"stylesheet\" type=\"text/css\"/>\n<script defer=\"\" src=\"https://cdn.sstatic.net/Js/webpack-chunks/1913.en.js?v=5c5b30d0ef5f\"></script><script defer=\"\" src=\"https://cdn.sstatic.net/Js/questions/list.en.js?v=c4fb7b6fad48\"></script>\n<link href=\"https://cdn.sstatic.net/Shared/Channels/channels.css?v=2c98e83b4da0\" rel=\"stylesheet\" type=\"text/css\"/>\n<script data-module-name=\"Shared/options.mod\" data-role=\"module-args\" type=\"application/json\">{\"options\":{\"locale\":\"en\",\"serverTime\":1750823448,\"routeName\":\"Questions/List\",\"stackAuthUrl\":\"https://stackauth.com\",\"networkMetaHostname\":\"meta.stackexchange.com\",\"site\":{\"name\":\"Stack Overflow\",\"description\":\"Q\\u0026A for professional and enthusiast programmers\",\"isNoticesTabEnabled\":true,\"enableNewTagCreationWarning\":true,\"insertSpaceAfterNameTabCompletion\":false,\"id\":1,\"cookieDomain\":\".stackoverflow.com\",\"childUrl\":\"https://meta.stackoverflow.com\",\"negativeVoteScoreFloor\":null,\"enableSocialMediaInSharePopup\":true,\"protocol\":\"https\"},\"user\":{\"fkey\":\"f62c23e9df0c16ba7570f392fc79fd25aa13adbb548b992c58c727e1e7ee186b\",\"tid\":\"04316e17-8c09-4e15-8c4c-4bec57e4e750\",\"rep\":0,\"isAnonymous\":true,\"isAnonymousNetworkWide\":true},\"events\":{\"postType\":{\"question\":1},\"postEditionSection\":{\"title\":1,\"body\":2,\"tags\":3}}}}</script>\n<script data-module-name=\"Shared/settings.mod\" data-role=\"module-args\" type=\"application/json\">{\"settings\":{\"flags\":{\"allowRetractingFlags\":true,\"allowRetractingCommentFlags\":true},\"accounts\":{\"currentPasswordRequiredForChangingStackIdPassword\":true},\"auth\":{\"oauthInPopup\":true},\"mentions\":{\"maxNumUsersInDropdown\":50},\"tags\":{},\"questions\":{\"questionTitleLengthStartLiveWarningChars\":50,\"maxTitleSize\":150,\"enableQuestionTitleLengthLiveWarning\":true,\"enableSavesFeature\":true},\"elections\":{\"opaVoteResultsBaseUrl\":\"https://www.opavote.com/results/\"},\"subscriptions\":{\"defaultBasicMaxTrueUpSeats\":250,\"defaultFreemiumMaxTrueUpSeats\":50,\"defaultMaxTrueUpSeats\":1000},\"snippets\":{\"stacksEditorSnippetsEnabledFor\":{\"Metadata\":{\"Name\":\"SnippetSettings.StacksEditorSnippetsEnabledFor\",\"Filter\":0},\"AppliedFilter\":0,\"IsNobody\":false,\"All\":true,\"Anonymous\":false,\"LoggedIn\":false,\"ChannelsMembers\":false,\"Moderators\":false,\"Employees\":false,\"Developers\":false,\"TeamAdmins\":false,\"AccountIds\":[],\"ExcludedAccountIds\":[],\"Serialization\":\"All\"},\"snippetsEnabled\":true,\"renderDomain\":\"stacksnippets.net\"},\"paths\":{\"jQueryUICSSPath\":\"https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/themes/smoothness/jquery-ui.css\",\"jQueryUIJSPath\":\"https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js\"},\"site\":{\"enableImageHttps\":true,\"enableUserHovercards\":true,\"allowImageUploads\":true,\"forceHttpsImages\":true,\"stacksEditorPreviewEnabled\":true,\"styleCode\":true},\"legal\":{\"useCustomConsent\":false,\"oneTrustTCFConfigId\":\"c3d9f1e3-55f3-4eba-b268-46cee4c6789c\"},\"comments\":{},\"userMessaging\":{\"showNewFeatureNotice\":true},\"intercom\":{\"appId\":\"inf0secd\"},\"markdown\":{\"enableTables\":true},\"questionLinkTitleReplacement\":{\"maxNumberOfSitesProcessed\":10,\"maxReplacementsPerSite\":20},\"image\":{\"maxImageUploadSizeInBytesAnimatedGif\":2097152,\"maxImageUploadSizeInBytes\":10485760},\"search\":{}}}</script>\n<script>StackExchange.init();</script>\n<script>\n        StackExchange.using.setCacheBreakers({\"Js/adops.en.js\":\"6da43f5e0a84\",\"Js/ask.en.js\":\"\",\"Js/begin-edit-event.en.js\":\"20edbaccceae\",\"Js/copy-transpiled.en.js\":\"d986e661b65c\",\"Js/events.en.js\":\"\",\"Js/explore-qlist.en.js\":\"ee2a4f8c3992\",\"Js/full-anon.en.js\":\"9478f2e36906\",\"Js/full.en.js\":\"f3225ed62c44\",\"Js/highlightjs-loader.en.js\":\"367954505ed3\",\"Js/inline-tag-editing.en.js\":\"8517756a2cb6\",\"Js/keyboard-shortcuts.en.js\":\"c255a5a5979b\",\"Js/markdown-it-loader.en.js\":\"9e901e1e3a2c\",\"Js/mentions-transpiled.en.js\":\"bcadb48d3570\",\"Js/moderator.en.js\":\"58c636437f40\",\"Js/postCollections-transpiled.en.js\":\"9f7a87e8cf0d\",\"Js/post-validation.en.js\":\"44d59ccfc490\",\"Js/question-editor.en.js\":\"\",\"Js/review-v2-transpiled.en.js\":\"b5c12b837d33\",\"Js/revisions.en.js\":\"9dd135bb585f\",\"Js/stacks-editor.en.js\":\"9ac62a49a33d\",\"Js/tageditor.en.js\":\"5b8f289d02ef\",\"Js/tageditornew.en.js\":\"ca426894aed0\",\"Js/tagsuggestions.en.js\":\"762b96a1ae1f\",\"Js/unlimited-transpiled.en.js\":\"8713a979101d\",\"Js/wmd.en.js\":\"88831443361b\",\"Js/snippet-javascript-codemirror.en.js\":\"0f42dbb990fa\"});\n        StackExchange.using(\"gps\", function() {\n             StackExchange.gps.init(false);\n        });\n    </script>\n<noscript id=\"noscript-css\"><style>body,.s-topbar{margin-top:1.9em}</style></noscript>\n</meta>"
+      },
+      {
+        "type": "social_meta",
+        "property": "og:url",
+        "content": "https://stackoverflow.com/questions",
+        "element": "<meta content=\"https://stackoverflow.com/questions\" property=\"og:url\"/>"
+      },
+      {
+        "type": "social_meta",
+        "property": "og:site_name",
+        "content": "Stack Overflow",
+        "element": "<meta content=\"Stack Overflow\" property=\"og:site_name\"/>"
+      },
+      {
+        "type": "social_meta",
+        "property": "og:image",
+        "content": "https://cdn.sstatic.net/Sites/stackoverflow/Img/apple-touch-icon@2.png?v=73d79a89bded",
+        "element": "<meta content=\"https://cdn.sstatic.net/Sites/stackoverflow/Img/apple-touch-icon@2.png?v=73d79a89bded\" itemprop=\"image primaryImageOfPage\" property=\"og:image\"/>"
+      },
+      {
+        "type": "social_meta",
+        "property": "og:title",
+        "content": "Newest Questions",
+        "element": "<meta content=\"Newest Questions\" itemprop=\"name\" name=\"twitter:title\" property=\"og:title\"/>"
+      },
+      {
+        "type": "social_meta",
+        "property": "og:description",
+        "content": "Stack Overflow | The World\u2019s Largest Online Community for Developers",
+        "element": "<meta content=\"Stack Overflow | The World\u2019s Largest Online Community for Developers\" itemprop=\"description\" name=\"twitter:description\" property=\"og:description\"/>"
+      }
+    ],
+    "css_trackers": [],
+    "summary": {
+      "total_trackers": 13,
+      "domains_found": [
+        "googletagmanager.com"
+      ],
+      "tracking_types": {
+        "pixels": 0,
+        "javascript": 7,
+        "meta_tags": 6,
+        "css_background": 0
+      }
+    },
+    "privacy_analysis": {
+      "privacy_score": 64,
+      "risk_level": "Medium",
+      "detected_categories": [
+        "advertising"
+      ],
+      "high_risk_domains": [
+        "googletagmanager.com"
+      ],
+      "recommendations": [
+        "Consider using ad blockers or privacy-focused browsers",
+        "Review and adjust ad personalization settings",
+        "High-risk tracking domains detected - consider VPN usage"
+      ]
+    }
+  }
+]

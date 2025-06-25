@@ -1,0 +1,25 @@
+detection:
+  custom_patterns: []
+  sensitivity: medium
+javascript:
+  enabled: false
+  wait_time: 3
+logging:
+  file: pixeltracker.log
+  level: INFO
+output:
+  formats:
+  - json
+  - html
+  include_raw_html: false
+privacy:
+  scoring_weights:
+    external_script: 8
+    high_risk_domain: 10
+    inline_script: 3
+    tracking_pixel: 5
+scanning:
+  concurrent_requests: 5
+  follow_redirects: true
+  rate_limit_delay: 1.0
+  request_timeout: 10
