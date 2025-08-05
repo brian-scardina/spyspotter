@@ -1,0 +1,452 @@
+{
+  "google_analytics": {
+    "name": "Google Analytics",
+    "category": "analytics",
+    "risk_level": "medium",
+    "patterns": [
+      "ga\\s*\\(\\s*['\"]send['\"]",
+      "gtag\\s*\\(\\s*['\"]config['\"]",
+      "gtag\\s*\\(\\s*['\"]event['\"]",
+      "_gaq\\.push",
+      "GoogleAnalyticsObject",
+      "google-analytics\\.com/analytics\\.js",
+      "google-analytics\\.com/ga\\.js",
+      "google-analytics\\.com/collect",
+      "gtm\\.start",
+      "dataLayer\\.push"
+    ],
+    "domains": ["google-analytics.com", "googletagmanager.com", "googlesyndication.com"],
+    "description": "Google's web analytics service",
+    "data_types": ["page_views", "user_behavior", "demographics", "interests"],
+    "gdpr_relevant": true,
+    "ccpa_relevant": true,
+    "detection_method": "javascript",
+    "evasion_techniques": ["server_side_proxy", "custom_domain"],
+    "first_seen": "2005-11-14",
+    "last_updated": "2025-08-05T14:47:33.789490"
+  },
+  "google_ads": {
+    "name": "Google Ads / DoubleClick",
+    "category": "advertising",
+    "risk_level": "high",
+    "patterns": [
+      "googletag\\.cmd\\.push",
+      "googletag\\.display",
+      "doubleclick\\.net",
+      "googleadservices\\.com",
+      "gpt\\.js",
+      "conversion\\.js",
+      "gtag\\s*\\(\\s*['\"]conversion['\"]"
+    ],
+    "domains": ["doubleclick.net", "googleadservices.com", "googlesyndication.com"],
+    "description": "Google's advertising and remarketing platform",
+    "data_types": ["ad_targeting", "conversion_tracking", "remarketing", "audience_segmentation"],
+    "gdpr_relevant": true,
+    "ccpa_relevant": true,
+    "detection_method": "javascript",
+    "evasion_techniques": ["first_party_data", "cookieless_tracking"],
+    "first_seen": "2007-04-13",
+    "last_updated": "2025-08-05T14:47:33.789490"
+  },
+  "facebook_pixel": {
+    "name": "Facebook Pixel",
+    "category": "social_advertising",
+    "risk_level": "high",
+    "patterns": [
+      "fbq\\s*\\(\\s*['\"]init['\"]",
+      "fbq\\s*\\(\\s*['\"]track['\"]",
+      "fbq\\s*\\(\\s*['\"]trackCustom['\"]",
+      "facebook\\.com/tr",
+      "connect\\.facebook\\.net",
+      "_fbp",
+      "_fbc"
+    ],
+    "domains": ["facebook.com", "connect.facebook.net", "facebook.net"],
+    "description": "Facebook's conversion tracking and advertising pixel",
+    "data_types": ["conversion_tracking", "custom_audiences", "lookalike_audiences", "cross_device_tracking"],
+    "gdpr_relevant": true,
+    "ccpa_relevant": true,
+    "detection_method": "javascript",
+    "evasion_techniques": ["conversions_api", "server_side_events"],
+    "first_seen": "2013-10-01",
+    "last_updated": "2025-08-05T14:47:33.789490"
+  },
+  "adobe_analytics": {
+    "name": "Adobe Analytics",
+    "category": "analytics",
+    "risk_level": "medium",
+    "patterns": [
+      "s\\.t\\s*\\(",
+      "s\\.tl\\s*\\(",
+      "omtrdc\\.net",
+      "demdex\\.net",
+      "adobe_mc",
+      "AppMeasurement",
+      "sitecatalyst",
+      "everesttech\\.net"
+    ],
+    "domains": ["omtrdc.net", "demdex.net", "everesttech.net", "2o7.net"],
+    "description": "Adobe's enterprise analytics platform",
+    "data_types": ["user_analytics", "attribution", "audience_management", "real_time_data"],
+    "gdpr_relevant": true,
+    "ccpa_relevant": true,
+    "detection_method": "javascript",
+    "evasion_techniques": ["first_party_cookies", "device_cooperative"],
+    "first_seen": "1996-11-01",
+    "last_updated": "2025-08-05T14:47:33.789490"
+  },
+  "twitter_ads": {
+    "name": "Twitter Ads",
+    "category": "social_advertising",
+    "risk_level": "high",
+    "patterns": [
+      "twq\\s*\\(\\s*['\"]init['\"]",
+      "twq\\s*\\(\\s*['\"]track['\"]",
+      "analytics\\.twitter\\.com",
+      "static\\.ads-twitter\\.com"
+    ],
+    "domains": ["analytics.twitter.com", "ads-twitter.com", "t.co"],
+    "description": "Twitter's advertising and conversion tracking",
+    "data_types": ["conversion_tracking", "audience_insights", "engagement_metrics"],
+    "gdpr_relevant": true,
+    "ccpa_relevant": true,
+    "detection_method": "javascript",
+    "evasion_techniques": ["mobile_app_events"],
+    "first_seen": "2013-04-01",
+    "last_updated": "2025-08-05T14:47:33.789490"
+  },
+  "linkedin_insight": {
+    "name": "LinkedIn Insight Tag",
+    "category": "social_advertising",
+    "risk_level": "medium",
+    "patterns": [
+      "_linkedin_partner_id",
+      "snap\\.licdn\\.com",
+      "linkedin\\.com/li\\.lms-analytics"
+    ],
+    "domains": ["snap.licdn.com", "linkedin.com"],
+    "description": "LinkedIn's conversion tracking for B2B advertising",
+    "data_types": ["b2b_targeting", "professional_demographics", "conversion_tracking"],
+    "gdpr_relevant": true,
+    "ccpa_relevant": true,
+    "detection_method": "javascript",
+    "evasion_techniques": ["first_party_data_matching"],
+    "first_seen": "2016-05-01",
+    "last_updated": "2025-08-05T14:47:33.789490"
+  },
+  "pinterest_tag": {
+    "name": "Pinterest Tag",
+    "category": "social_advertising",
+    "risk_level": "medium",
+    "patterns": [
+      "pintrk\\s*\\(\\s*['\"]load['\"]",
+      "pintrk\\s*\\(\\s*['\"]track['\"]",
+      "ct\\.pinterest\\.com"
+    ],
+    "domains": ["ct.pinterest.com", "pinterest.com"],
+    "description": "Pinterest's conversion tracking pixel",
+    "data_types": ["shopping_behavior", "interest_targeting", "conversion_tracking"],
+    "gdpr_relevant": true,
+    "ccpa_relevant": true,
+    "detection_method": "javascript",
+    "evasion_techniques": ["enhanced_match"],
+    "first_seen": "2016-02-01",
+    "last_updated": "2025-08-05T14:47:33.789490"
+  },
+  "snapchat_pixel": {
+    "name": "Snapchat Pixel",
+    "category": "social_advertising",
+    "risk_level": "medium",
+    "patterns": [
+      "snaptr\\s*\\(\\s*['\"]init['\"]",
+      "snaptr\\s*\\(\\s*['\"]track['\"]",
+      "tr\\.snapchat\\.com"
+    ],
+    "domains": ["tr.snapchat.com", "sc-static.net"],
+    "description": "Snapchat's advertising pixel for mobile-first audience",
+    "data_types": ["mobile_behavior", "demographic_targeting", "app_events"],
+    "gdpr_relevant": true,
+    "ccpa_relevant": true,
+    "detection_method": "javascript",
+    "evasion_techniques": ["snap_pixel_advanced_matching"],
+    "first_seen": "2016-10-01",
+    "last_updated": "2025-08-05T14:47:33.789490"
+  },
+  "tiktok_pixel": {
+    "name": "TikTok Pixel",
+    "category": "social_advertising",
+    "risk_level": "high",
+    "patterns": [
+      "ttq\\.load",
+      "ttq\\.page",
+      "ttq\\.track",
+      "analytics\\.tiktok\\.com"
+    ],
+    "domains": ["analytics.tiktok.com", "tiktok.com"],
+    "description": "TikTok's advertising pixel for Gen Z targeting",
+    "data_types": ["video_engagement", "mobile_behavior", "trend_analytics"],
+    "gdpr_relevant": true,
+    "ccpa_relevant": true,
+    "detection_method": "javascript",
+    "evasion_techniques": ["events_api"],
+    "first_seen": "2019-03-01",
+    "last_updated": "2025-08-05T14:47:33.789490"
+  },
+  "mixpanel": {
+    "name": "Mixpanel",
+    "category": "analytics",
+    "risk_level": "medium",
+    "patterns": [
+      "mixpanel\\.init",
+      "mixpanel\\.track",
+      "mixpanel\\.identify",
+      "mp_track",
+      "api\\.mixpanel\\.com"
+    ],
+    "domains": ["api.mixpanel.com", "cdn.mxpnl.com"],
+    "description": "Product analytics and user behavior tracking",
+    "data_types": ["event_tracking", "user_journeys", "funnel_analysis", "cohort_analysis"],
+    "gdpr_relevant": true,
+    "ccpa_relevant": true,
+    "detection_method": "javascript",
+    "evasion_techniques": ["identity_resolution"],
+    "first_seen": "2009-04-01",
+    "last_updated": "2025-08-05T14:47:33.789490"
+  },
+  "amplitude": {
+    "name": "Amplitude",
+    "category": "analytics",
+    "risk_level": "medium",
+    "patterns": [
+      "amplitude\\.getInstance",
+      "amplitude\\.logEvent",
+      "amplitude\\.setUserId",
+      "api\\.amplitude\\.com"
+    ],
+    "domains": ["api.amplitude.com", "cdn.amplitude.com"],
+    "description": "Product intelligence and behavioral analytics",
+    "data_types": ["user_behavior", "retention_analysis", "behavioral_cohorts"],
+    "gdpr_relevant": true,
+    "ccpa_relevant": true,
+    "detection_method": "javascript",
+    "evasion_techniques": ["cross_platform_identification"],
+    "first_seen": "2012-01-01",
+    "last_updated": "2025-08-05T14:47:33.789490"
+  },
+  "segment": {
+    "name": "Segment",
+    "category": "analytics",
+    "risk_level": "medium",
+    "patterns": [
+      "analytics\\.track",
+      "analytics\\.page",
+      "analytics\\.identify",
+      "analytics\\.alias",
+      "api\\.segment\\.io",
+      "cdn\\.segment\\.com"
+    ],
+    "domains": ["api.segment.io", "cdn.segment.com"],
+    "description": "Customer data platform and analytics infrastructure",
+    "data_types": ["unified_customer_profiles", "event_streaming", "audience_management"],
+    "gdpr_relevant": true,
+    "ccpa_relevant": true,
+    "detection_method": "javascript",
+    "evasion_techniques": ["server_side_libraries"],
+    "first_seen": "2011-10-01",
+    "last_updated": "2025-08-05T14:47:33.789490"
+  },
+  "hotjar": {
+    "name": "Hotjar",
+    "category": "user_experience",
+    "risk_level": "high",
+    "patterns": [
+      "hj\\s*\\(",
+      "hotjar",
+      "static\\.hotjar\\.com",
+      "insights\\.hotjar\\.com"
+    ],
+    "domains": ["static.hotjar.com", "insights.hotjar.com", "vars.hotjar.com"],
+    "description": "Heatmaps, session recordings, and user feedback",
+    "data_types": ["session_recordings", "heatmaps", "form_analytics", "feedback"],
+    "gdpr_relevant": true,
+    "ccpa_relevant": true,
+    "detection_method": "javascript",
+    "evasion_techniques": ["ip_anonymization"],
+    "first_seen": "2014-11-01",
+    "last_updated": "2025-08-05T14:47:33.789490"
+  },
+  "fullstory": {
+    "name": "FullStory",
+    "category": "user_experience",
+    "risk_level": "high",
+    "patterns": [
+      "FS\\.",
+      "fullstory",
+      "\\.fullstory\\.com"
+    ],
+    "domains": ["fullstory.com", "edge.fullstory.com"],
+    "description": "Digital experience analytics with session replay",
+    "data_types": ["session_recordings", "user_interactions", "error_tracking"],
+    "gdpr_relevant": true,
+    "ccpa_relevant": true,
+    "detection_method": "javascript",
+    "evasion_techniques": ["privacy_controls"],
+    "first_seen": "2014-01-01",
+    "last_updated": "2025-08-05T14:47:33.789490"
+  },
+  "crazyegg": {
+    "name": "Crazy Egg",
+    "category": "user_experience",
+    "risk_level": "medium",
+    "patterns": [
+      "crazyegg",
+      "CE_API",
+      "dnn506yrbagrg\\.cloudfront\\.net"
+    ],
+    "domains": ["crazyegg.com", "dnn506yrbagrg.cloudfront.net"],
+    "description": "Heatmap and A/B testing platform",
+    "data_types": ["click_tracking", "heatmaps", "scroll_maps"],
+    "gdpr_relevant": true,
+    "ccpa_relevant": true,
+    "detection_method": "javascript",
+    "evasion_techniques": ["cookieless_tracking"],
+    "first_seen": "2006-01-01",
+    "last_updated": "2025-08-05T14:47:33.789490"
+  },
+  "optimizely": {
+    "name": "Optimizely",
+    "category": "optimization",
+    "risk_level": "medium",
+    "patterns": [
+      "optimizely",
+      "optly",
+      "cdn\\.optimizely\\.com",
+      "logx\\.optimizely\\.com"
+    ],
+    "domains": ["cdn.optimizely.com", "logx.optimizely.com", "optimizely.com"],
+    "description": "A/B testing and experimentation platform",
+    "data_types": ["experiment_data", "conversion_tracking", "user_segmentation"],
+    "gdpr_relevant": true,
+    "ccpa_relevant": true,
+    "detection_method": "javascript",
+    "evasion_techniques": ["edge_side_experiments"],
+    "first_seen": "2010-01-01",
+    "last_updated": "2025-08-05T14:47:33.789490"
+  },
+  "hubspot": {
+    "name": "HubSpot",
+    "category": "marketing_automation",
+    "risk_level": "medium",
+    "patterns": [
+      "_hsq\\.push",
+      "hubspot",
+      "js\\.hs-scripts\\.com",
+      "forms\\.hubspot\\.com"
+    ],
+    "domains": ["js.hs-scripts.com", "forms.hubspot.com", "hubspot.com"],
+    "description": "Inbound marketing and CRM platform",
+    "data_types": ["lead_tracking", "email_engagement", "form_submissions"],
+    "gdpr_relevant": true,
+    "ccpa_relevant": true,
+    "detection_method": "javascript",
+    "evasion_techniques": ["progressive_profiling"],
+    "first_seen": "2006-06-01",
+    "last_updated": "2025-08-05T14:47:33.789490"
+  },
+  "newrelic": {
+    "name": "New Relic",
+    "category": "performance",
+    "risk_level": "low",
+    "patterns": [
+      "NREUM",
+      "newrelic",
+      "js-agent\\.newrelic\\.com"
+    ],
+    "domains": ["js-agent.newrelic.com", "bam.nr-data.net"],
+    "description": "Application performance monitoring",
+    "data_types": ["performance_metrics", "error_tracking", "user_timing"],
+    "gdpr_relevant": false,
+    "ccpa_relevant": false,
+    "detection_method": "javascript",
+    "evasion_techniques": ["custom_attributes"],
+    "first_seen": "2008-01-01",
+    "last_updated": "2025-08-05T14:47:33.789490"
+  },
+  "canvas_fingerprinting": {
+    "name": "Canvas Fingerprinting",
+    "category": "privacy_invasion",
+    "risk_level": "critical",
+    "patterns": [
+      "canvas\\.toDataURL",
+      "getContext\\s*\\(\\s*['\"]2d['\"]",
+      "canvas\\.getImageData",
+      "measureText"
+    ],
+    "domains": [],
+    "description": "Browser fingerprinting via canvas element",
+    "data_types": ["device_fingerprint", "browser_fingerprint"],
+    "gdpr_relevant": true,
+    "ccpa_relevant": true,
+    "detection_method": "javascript",
+    "evasion_techniques": ["noise_injection", "permission_prompts"],
+    "first_seen": "2012-01-01",
+    "last_updated": "2025-08-05T14:47:33.789490"
+  },
+  "webrtc_leak": {
+    "name": "WebRTC IP Leak",
+    "category": "privacy_invasion",
+    "risk_level": "critical",
+    "patterns": [
+      "RTCPeerConnection",
+      "webkitRTCPeerConnection",
+      "mozRTCPeerConnection"
+    ],
+    "domains": [],
+    "description": "IP address detection via WebRTC STUN servers",
+    "data_types": ["real_ip_address", "network_information"],
+    "gdpr_relevant": true,
+    "ccpa_relevant": true,.
+    "detection_method": "javascript",
+    "evasion_techniques": ["webrtc_blocking"],
+    "first_seen": "2013-01-01",
+    "last_updated": "2025-08-05T14:47:33.789490"
+  },
+  "criteo": {
+    "name": "Criteo",
+    "category": "advertising",
+    "risk_level": "high",
+    "patterns": [
+      "criteo",
+      "cas\\.criteo\\.com",
+      "static\\.criteo\\.net"
+    ],
+    "domains": ["cas.criteo.com", "static.criteo.net", "dis.criteo.com"],
+    "description": "Personalized retargeting platform",
+    "data_types": ["shopping_behavior", "product_affinity", "purchase_intent"],
+    "gdpr_relevant": true,
+    "ccpa_relevant": true,
+    "detection_method": "javascript",
+    "evasion_techniques": ["first_party_data"],
+    "first_seen": "2005-01-01",
+    "last_updated": "2025-08-05T14:47:33.789490"
+  },
+  "tiktok_shop_pixel": {
+    "name": "TikTok Shop Pixel",
+    "category": "e_commerce",
+    "risk_level": "high",
+    "patterns": [
+      "ttq\\.track\\s*\\(\\s*['\"]CompletePayment['\"]",
+      "ttq\\.track\\s*\\(\\s*['\"]AddToCart['\"]",
+      "shop\\.tiktok\\.com"
+    ],
+    "domains": ["shop.tiktok.com", "analytics.tiktok.com"],
+    "description": "TikTok's e-commerce tracking pixel",
+    "data_types": ["purchase_behavior", "shopping_cart", "product_views"],
+    "gdpr_relevant": true,
+    "ccpa_relevant": true,
+    "detection_method": "javascript",
+    "evasion_techniques": ["server_side_api"],
+    "first_seen": "2021-01-01",
+    "last_updated": "2025-08-05T14:47:33.789490"
+  }
+}

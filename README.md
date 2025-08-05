@@ -13,9 +13,9 @@ A comprehensive Python toolkit for detecting tracking pixels, JavaScript tracker
 - **Comprehensive Domain Database**: Includes 150+ known tracking domains across all major platforms
 
 ### Enhanced Scanning (New!)
-- **Machine Learning Analysis**: Optional ML-powered domain clustering and behavioral analysis
+- **Machine Learning Analysis**: Optional ML-powered domain clustering and behavioral analysis (Note: This feature is currently under development and not yet fully functional.)
 - **Asynchronous Scanning**: Concurrent requests for faster bulk scanning
-- **JavaScript Execution**: Browser automation for dynamic content analysis
+- **JavaScript Execution**: Browser automation for dynamic content analysis (Note: This feature is currently under development and requires a local installation of Node.js and Puppeteer.)
 - **Performance Metrics**: Detailed timing and response analysis
 - **Intelligence Database**: SQLite storage for tracking patterns and scan history
 

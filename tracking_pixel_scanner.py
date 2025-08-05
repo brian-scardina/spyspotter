@@ -21,7 +21,7 @@ from urllib3.util.retry import Retry
 
 # Import our comprehensive tracker database
 try:
-    from tracker_database import tracker_db
+    from pixeltracker.tracker_database import tracker_db
 except ImportError:
     print("Warning: Could not import tracker database. Using fallback patterns.")
     tracker_db = None

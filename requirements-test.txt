@@ -9,7 +9,7 @@ pytest-mock>=3.10.0
 # HTTP mocking libraries
 responses>=0.23.0
 requests-mock>=1.10.0
-httpx-mock>=0.10.0  # For async HTTP testing
+httpx>=0.23.0  # For async HTTP testing
 aioresponses>=0.7.4  # For aiohttp mocking
 
 # Test server for integration tests

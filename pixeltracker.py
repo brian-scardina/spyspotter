@@ -14,16 +14,16 @@ from pydantic import BaseModel, field_validator
 
 # Import our modules
 try:
-    from config import Config
+    from pixeltracker.config import Config
     from tracking_pixel_scanner import TrackingPixelScanner
-    from enhanced_tracking_scanner import EnhancedTrackingScanner
-    from tracker_database import tracker_db
+    from pixeltracker.scanner import EnhancedTrackingScanner
+    from pixeltracker.tracker_database import tracker_db
     from pixeltracker.security import rate_limiter
     from pixeltracker.compliance import gdpr_ccpa as compliance
     from pixeltracker.security import security_scanner
 except ImportError as e:
     print(f"Error importing modules: {e}")
-    print("Make sure all required dependencies are installed.")
+    print("Make sure all required dependencies are installed and the project is installed in editable mode.")
     # Try to continue without tracker_db
     tracker_db = None
     rate_limiter = None
@@ -171,7 +171,7 @@ async def run_enhanced_scan(config: Config, args: ScanArgs) -> None:
         if args.rate_limit:
             config.set('scanning.rate_limit_delay', args.rate_limit)
         
-        scanner = EnhancedTrackingScanner(args.config)
+        scanner = EnhancedTrackingScanner(config)
         urls = validate_urls(args.urls)
         
         print(f"🚀 Starting enhanced scan of {len(urls)} URLs...")

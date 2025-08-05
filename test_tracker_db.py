@@ -3,7 +3,7 @@
 Test script for the comprehensive tracker database
 """
 
-from tracker_database import tracker_db
+from pixeltracker.tracker_database import tracker_db
 
 def test_basic_functionality():
     """Test basic tracker database functionality"""
